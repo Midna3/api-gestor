@@ -12,7 +12,7 @@ Em sua totalidade, o projeto busca desenvolver ferramentas que auxiliem na gest�
 
 # Projeto(s) Relacionado(s)
 
-- {Título do projeto front-end}: ferramenta de visualização de dados para gestores escolares, que utiliza a _API Gestor_.
+- [FrontEnd Gestor](https://github.com/Midna3/frontend-gestor): ferramenta de visualização de dados para gestores escolares, que utiliza a _API Gestor_.
 
 # Equipe 💼
 
