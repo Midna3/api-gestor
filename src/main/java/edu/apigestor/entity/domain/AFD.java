@@ -1,8 +1,11 @@
 package edu.apigestor.entity.domain;
 
+import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 /**
@@ -15,37 +18,42 @@ import javax.persistence.Table;
  * @version 1.0
  */
 @Entity
+@IdClass(AFD.AFDKey.class)
 @Table(name = "afd")
 public class AFD {
 
   @Id
   @Column(name = "codEscola")
   private int codINEP;
-
+  @Id
   @Column(name = "codEstado")
   private int codEstado;
-
+  @Id
+  @Column(name = "codPais")
+  private int codPais; // Não precisamos de get/set, apenas serve para chave primária.
+  @Id
   @Column(name = "codMunicipio")
   private int codMunicipio;
-
+  @Id
   @Column(name = "codRegiao")
   private int codRegiao;
-
+  @Id
   @Column(name = "tipo")
   private int tipo;
-
+  @Id
+  @Column(name = "dependencia")
+  private String dependencia; // Não precisamos de get/set, apenas serve para chave primária.
+  @Id
+  @Column(name = "localizacao")
+  private String localizacao; // Não precisamos de get/set, apenas serve para chave primária.
   @Column(name = "AFDFundamentalTotalG1")
   private double percentageG1;
-
   @Column(name = "AFDFundamentalTotalG2")
   private double percentageG2;
-
   @Column(name = "AFDFundamentalTotalG3")
   private double percentageG3;
-
   @Column(name = "AFDFundamentalTotalG4")
   private double percentageG4;
-
   @Column(name = "AFDFundamentalTotalG5")
   private double percentageG5;
 
@@ -138,5 +146,42 @@ public class AFD {
    */
   public double percentageG5() {
     return this.percentageG5;
+  }
+
+  static class AFDKey implements Serializable {
+
+    private int codINEP;
+    private int codEstado;
+    private int codPais;
+    private int codRegiao;
+    private int codMunicipio;
+    private String dependencia;
+    private String localizacao;
+    private int tipo;
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) {
+        return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+        return false;
+      }
+      AFDKey key = (AFDKey) o;
+      return (this.codINEP == key.codINEP) &&
+          (this.codEstado == key.codEstado) &&
+          (this.codPais == key.codPais) &&
+          (this.codRegiao == key.codRegiao) &&
+          (this.codMunicipio == key.codMunicipio) &&
+          this.dependencia.equals(key.dependencia) &&
+          this.localizacao.equals(key.localizacao) &&
+          (this.tipo == key.tipo);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(this.codINEP, this.codEstado, this.codPais, this.codRegiao,
+          this.codMunicipio, this.dependencia, this.localizacao, this.tipo);
+    }
   }
 }
