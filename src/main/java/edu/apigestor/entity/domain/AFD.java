@@ -22,6 +22,18 @@ public class AFD {
   @Column(name = "codEscola")
   private int codINEP;
 
+  @Column(name = "codEstado")
+  private int codEstado;
+
+  @Column(name = "codMunicipio")
+  private int codMunicipio;
+
+  @Column(name = "codPais")
+  private int codPais;
+
+  @Column(name = "codRegiao")
+  private int codRegiao;
+
   @Column(name = "tipo")
   private int tipo;
 
@@ -44,7 +56,7 @@ public class AFD {
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse AFD.
    *
    * @return long representando o código INEP.
-   * */
+   */
   public long codINEP() {
     return this.codINEP;
   }
@@ -54,7 +66,7 @@ public class AFD {
    * regional, estadual ou escolar).
    *
    * @return inteiro que representa o tipo.
-   * */
+   */
   public int tipo() {
     return this.tipo;
   }
@@ -63,7 +75,7 @@ public class AFD {
    * Retorna a porcentagem de professores que se encaixam na categoria 1.
    *
    * @return double representando essa porcentagem.
-   * */
+   */
   public double percentageG1() {
     return this.percentageG1;
   }
@@ -72,7 +84,7 @@ public class AFD {
    * Retorna a porcentagem de professores que se encaixam na categoria 2.
    *
    * @return double representando essa porcentagem.
-   * */
+   */
   public double percentageG2() {
     return this.percentageG2;
   }
@@ -81,7 +93,7 @@ public class AFD {
    * Retorna a porcentagem de professores que se encaixam na categoria 3.
    *
    * @return double representando essa porcentagem.
-   * */
+   */
   public double percentageG3() {
     return this.percentageG3;
   }
@@ -90,7 +102,7 @@ public class AFD {
    * Retorna a porcentagem de professores que se encaixam na categoria 4.
    *
    * @return double representando essa porcentagem.
-   * */
+   */
   public double percentageG4() {
     return this.percentageG4;
   }
@@ -99,7 +111,7 @@ public class AFD {
    * Retorna a porcentagem de professores que se encaixam na categoria 5.
    *
    * @return double representando essa porcentagem.
-   * */
+   */
   public double percentageG5() {
     return this.percentageG5;
   }
