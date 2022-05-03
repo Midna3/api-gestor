@@ -20,7 +20,7 @@ public class AFD {
 
   @Id
   @Column(name = "codEscola")
-  private long codINEP;
+  private int codINEP;
 
   @Column(name = "tipo")
   private int tipo;
