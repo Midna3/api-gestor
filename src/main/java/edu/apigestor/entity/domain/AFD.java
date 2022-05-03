@@ -148,7 +148,7 @@ public class AFD {
     return this.percentageG5;
   }
 
-  static class AFDKey implements Serializable {
+  public static class AFDKey implements Serializable {
 
     private int codINEP;
     private int codEstado;
