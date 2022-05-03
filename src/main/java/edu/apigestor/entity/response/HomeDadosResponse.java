@@ -14,6 +14,66 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
 
   private boolean hasError = false;
 
+  /**
+   * Adiciona um identificador único para essa resposta.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse id(long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Adiciona o índice de Complexidade de Gestão médio.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse icg(Double icg) {
+    this.data.meanICG = icg;
+    return this;
+  }
+
+  /**
+   * Adiciona o indicador de esforço docente médio.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse ied(Double ied) {
+    this.data.meanIED = ied;
+    return this;
+  }
+
+  /**
+   * Adiciona o indicador de adequação da formação docente médio.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse afd(Double afd) {
+    this.data.meanAFD = afd;
+    return this;
+  }
+
+  /**
+   * Adiciona o indicador de regularidade docente médio.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse ird(Double ird) {
+    this.data.meanIRD = ird;
+    return this;
+  }
+
+  /**
+   * Adiciona o indicador de distorção idade série médio.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse tdi(Double tdi) {
+    this.data.meanTDI = tdi;
+    return this;
+  }
+
   @Override
   protected void handleError() {
     this.hasError = true;
@@ -43,8 +103,8 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
 
     @JsonUnwrapped
     private Map<String, Object> others;
-    @JsonProperty("efd")
-    private double meanEFD; // esforço docente médio
+    @JsonProperty("ied")
+    private double meanIED; // esforço docente médio
     @JsonProperty("ird")
     private double meanIRD; // regularidade docente média
     @JsonProperty("tdi")
