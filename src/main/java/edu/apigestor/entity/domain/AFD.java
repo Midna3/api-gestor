@@ -28,9 +28,6 @@ public class AFD {
   @Column(name = "codMunicipio")
   private int codMunicipio;
 
-  @Column(name = "codPais")
-  private int codPais;
-
   @Column(name = "codRegiao")
   private int codRegiao;
 
@@ -59,6 +56,33 @@ public class AFD {
    */
   public int codINEP() {
     return this.codINEP;
+  }
+
+  /**
+   * Retorna o código do estado associado com esse AFD.
+   *
+   * @return int representando o estado.
+   */
+  public int codEstado() {
+    return this.codEstado;
+  }
+
+  /**
+   * Retorna o código do município associada com esse AFD.
+   *
+   * @return int representando o estado.
+   */
+  public int codMunicipio() {
+    return this.codMunicipio;
+  }
+
+  /**
+   * Retorna o código da região associada com esse AFD.
+   *
+   * @return int representando o estado.
+   */
+  public int codRegiao() {
+    return this.codRegiao;
   }
 
   /**
