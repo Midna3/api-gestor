@@ -5,6 +5,14 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * <p>Essa classe representa uma resposta para solicitações de dados gerais sobre a educação
+ * brasileira em algum nível (Nacional, Regional ou Estadual).</p>
+ *
+ * @author moesiof
+ * @version 1.0
+ * @see AbstractResponse
+ */
 public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Object>> {
 
   private static final String RESOURCE_TYPE = "eduData";
@@ -99,6 +107,13 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
 
   protected abstract Map<String, Object> additionalAttributes();
 
+  /**
+   * Define os dados que compõem uma resposta sobre os dados da educação brasileira. Todos
+   * representam uma média.
+   *
+   * @author moesiof
+   * @version 1.0
+   */
   private static class HomeDadosData {
 
     @JsonUnwrapped
