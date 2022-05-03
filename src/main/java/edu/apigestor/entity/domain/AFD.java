@@ -41,8 +41,7 @@ public class AFD {
   private double percentageG5;
 
   /**
-   * Retorna o código INEP da escola associada com esse AFD (0 caso não seja aplicável para uma
-   * escola).
+   * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse AFD.
    *
    * @return long representando o código INEP.
    * */
@@ -51,7 +50,8 @@ public class AFD {
   }
 
   /**
-   * Retorna o tipo.
+   * Retorna o tipo dessa entidade (o tipo identifica se essa entidade se refere ao nível nacional,
+   * regional, estadual ou escolar).
    *
    * @return inteiro que representa o tipo.
    * */
@@ -69,7 +69,7 @@ public class AFD {
   }
 
   /**
-   * Retorna a porcentagem de professores que se encaixam na categoria 1.
+   * Retorna a porcentagem de professores que se encaixam na categoria 2.
    *
    * @return double representando essa porcentagem.
    * */
@@ -78,7 +78,7 @@ public class AFD {
   }
 
   /**
-   * Retorna a porcentagem de professores que se encaixam na categoria 1.
+   * Retorna a porcentagem de professores que se encaixam na categoria 3.
    *
    * @return double representando essa porcentagem.
    * */
@@ -87,7 +87,7 @@ public class AFD {
   }
 
   /**
-   * Retorna a porcentagem de professores que se encaixam na categoria 1.
+   * Retorna a porcentagem de professores que se encaixam na categoria 4.
    *
    * @return double representando essa porcentagem.
    * */
@@ -96,7 +96,7 @@ public class AFD {
   }
 
   /**
-   * Retorna a porcentagem de professores que se encaixam na categoria 1.
+   * Retorna a porcentagem de professores que se encaixam na categoria 5.
    *
    * @return double representando essa porcentagem.
    * */
