@@ -55,9 +55,9 @@ public class AFD {
   /**
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse AFD.
    *
-   * @return long representando o código INEP.
+   * @return int representando o código INEP.
    */
-  public long codINEP() {
+  public int codINEP() {
     return this.codINEP;
   }
 
