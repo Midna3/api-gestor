@@ -13,6 +13,8 @@ import java.util.Map;
  */
 public final class PainelEscolaResponse extends AbstractResponse<Map<String, Object>> {
 
+  private static final String RESOURCE_TYPE = "schoolData";
+
   private final PainelEscolaData data = new PainelEscolaData();
   private long id; // identificar da resposta
   private boolean hasError = false;
@@ -38,7 +40,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   }
 
   /**
-   * Adiciona o código INEP,.
+   * Adiciona o código INEP.
    *
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
@@ -149,15 +151,15 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
     }
 
     Map<String, Object> data = new LinkedHashMap<>();
-    data.put("id", Long.toString(this.id));
-    data.put("type", "schoolData");
+    data.put("id", this.id);
+    data.put("type", PainelEscolaResponse.RESOURCE_TYPE);
     data.put("attributes", this.data); // Adiciona todos os dados nos atributos
 
     return data;
   }
 
   /**
-   * Define os dados que compõem uma resposta para o Paindel de Escola.
+   * Define os dados que compõem uma resposta para o Painel de Escola.
    *
    * @author moesiof
    * @version 1.0
