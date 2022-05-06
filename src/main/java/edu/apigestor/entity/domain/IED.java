@@ -23,6 +23,9 @@ import javax.persistence.Table;
 public class IED {
 
     @Id
+    @Column(name = "ano")
+    private int ano;
+    @Id
     @Column(name = "codEscola")
     private int codINEP;
     @Id
@@ -57,6 +60,15 @@ public class IED {
     private double percentageN5;
     @Column(name = "IEDFundamentalTotalNivel6")
     private double percentageN6;
+
+    /**
+     * Retorna o ano dessa entidade.
+     *
+     * @return inteiro que representa o ano (e.g., 2019).
+     */
+    public int getAno() {
+        return this.ano;
+    }
 
     /**
      * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse IED.
@@ -160,6 +172,7 @@ public class IED {
 
     public static class IEDKey implements Serializable {
 
+        private int ano;
         private int codINEP;
         private int codEstado;
         private int codPais;
@@ -177,7 +190,8 @@ public class IED {
                 return false;
             }
             IEDKey key = (IEDKey) o;
-            return (this.codINEP == key.codINEP) &&
+            return  (this.ano == key.ano) &&
+                    (this.codINEP == key.codINEP) &&
                     (this.codEstado == key.codEstado) &&
                     (this.codPais == key.codPais) &&
                     (this.codRegiao == key.codRegiao) &&
@@ -188,7 +202,7 @@ public class IED {
 
         @Override
         public int hashCode() {
-            return Objects.hash(this.codINEP, this.codEstado, this.codPais, this.codRegiao,
+            return Objects.hash(this.ano, this.codINEP, this.codEstado, this.codPais, this.codRegiao,
                     this.codMunicipio, this.dependencia, this.localizacao);
         }
     }
