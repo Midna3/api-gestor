@@ -5,6 +5,14 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * <p>Essa classe representa uma resposta para solicitações do Ideb em diferentes níveis
+ * (Nacional, Regional ou Estadual).</p>
+ *
+ * @author moesiof
+ * @version 1.0
+ * @see AbstractResponse
+ */
 public abstract class IdebResponse extends AbstractResponse<Map<String, Object>> {
 
   private static final String RESOURCE_TYPE = "idebData";
@@ -12,6 +20,36 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
   private final IdebData data = new IdebData();
   private long id; // identificar da resposta
   private boolean hasError = false;
+
+  /**
+   * Adiciona um identificador único para essa resposta.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public IdebResponse id(long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Adiciona o Ideb dos anos iniciais.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public IdebResponse idebIniciais(double idebIniciais) {
+    this.data.idebInicias = idebIniciais;
+    return this;
+  }
+
+  /**
+   * Adiciona o Ideb dos anos finais.
+   *
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public IdebResponse idebFinais(double idebFinais) {
+    this.data.idebFinais = idebFinais;
+    return this;
+  }
 
   @Override
   protected void handleError() {
@@ -38,6 +76,13 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
 
   protected abstract Map<String, Object> additionalAttributes();
 
+  /**
+   * Define os dados que compõem uma resposta sobre o Ideb de uma determinada entidade (região,
+   * país, escola, etc).
+   *
+   * @author moesiof
+   * @version 1.0
+   */
   private static class IdebData {
 
     @JsonUnwrapped
