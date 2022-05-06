@@ -38,14 +38,16 @@ public class AFD {
   @Column(name = "codRegiao")
   private int codRegiao;
   @Id
-  @Column(name = "tipo")
-  private int tipo;
+  @Column(name = "ano")
+  private int ano;
   @Id
   @Column(name = "dependencia")
   private String dependencia; // Não precisamos de get/set, apenas serve para chave primária.
   @Id
   @Column(name = "localizacao")
   private String localizacao; // Não precisamos de get/set, apenas serve para chave primária.
+  @Column(name = "tipo")
+  private int tipo;
   @Column(name = "AFDFundamentalTotalG1")
   private double percentageG1;
   @Column(name = "AFDFundamentalTotalG2")
@@ -104,6 +106,15 @@ public class AFD {
   }
 
   /**
+   * Retorna o ano dessa entidade.
+   *
+   * @return inteiro que representa o ano (e.g., 2019).
+   */
+  public int ano() {
+    return this.ano;
+  }
+
+  /**
    * Retorna a porcentagem de professores que se encaixam na categoria 1.
    *
    * @return double representando essa porcentagem.
@@ -157,7 +168,7 @@ public class AFD {
     private int codMunicipio;
     private String dependencia;
     private String localizacao;
-    private int tipo;
+    private int ano;
 
     @Override
     public boolean equals(Object o) {
@@ -175,13 +186,13 @@ public class AFD {
           (this.codMunicipio == key.codMunicipio) &&
           this.dependencia.equals(key.dependencia) &&
           this.localizacao.equals(key.localizacao) &&
-          (this.tipo == key.tipo);
+          (this.ano == key.ano);
     }
 
     @Override
     public int hashCode() {
       return Objects.hash(this.codINEP, this.codEstado, this.codPais, this.codRegiao,
-          this.codMunicipio, this.dependencia, this.localizacao, this.tipo);
+          this.codMunicipio, this.dependencia, this.localizacao, this.ano);
     }
   }
 }
