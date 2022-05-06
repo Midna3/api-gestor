@@ -64,7 +64,7 @@ public class IRD {
      *
      * @return inteiro que representa o ano (e.g., 2019).
      */
-    public int ano() {
+    public int getAno() {git
         return this.ano;
     }
 
