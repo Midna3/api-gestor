@@ -60,6 +60,15 @@ public class IRD {
     private double percentageMediaTotal;
 
     /**
+     * Retorna o ano dessa entidade.
+     *
+     * @return inteiro que representa o ano (e.g., 2019).
+     */
+    public int ano() {
+        return this.ano;
+    }
+
+    /**
      * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse IRD.
      *
      * @return int representando o código INEP.
