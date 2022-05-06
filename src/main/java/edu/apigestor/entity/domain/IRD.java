@@ -159,7 +159,7 @@ public class IRD {
         return percentageMediaTotal;
     }
 
-    public static class IEDKey implements Serializable {
+    public static class IRDKey implements Serializable {
 
         private int ano;
         private int codINEP;
@@ -178,7 +178,7 @@ public class IRD {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            IEDKey key = (IEDKey) o;
+            IRDKey key = (IRDKey) o;
             return (this.ano == key.ano) &&
                     (this.codINEP == key.codINEP) &&
                     (this.codEstado == key.codEstado) &&
