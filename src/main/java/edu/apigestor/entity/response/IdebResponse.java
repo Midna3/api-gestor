@@ -1,7 +1,7 @@
 package edu.apigestor.entity.response;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -85,7 +85,7 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
    */
   private static class IdebData {
 
-    @JsonUnwrapped
+    @JsonAnyGetter
     private Map<String, Object> others;
 
     @JsonProperty("idebIniciais")

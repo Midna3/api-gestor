@@ -1,7 +1,7 @@
 package edu.apigestor.entity.response;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -116,7 +116,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
    */
   private static class HomeDadosData {
 
-    @JsonUnwrapped
+    @JsonAnyGetter
     private Map<String, Object> others;
     @JsonProperty("ied")
     private double meanIED; // esforço docente médio
