@@ -73,9 +73,9 @@ public abstract class AbstractResponse<T> {
    * @param id     identificador único da ocorrência desse erro.
    * @param status status HTTP desse erro.
    */
-  public void addError(long id, long status, String title) {
+  public void addError(long id, int status, String title) {
     this.error.put("id", Long.toString(id));
-    this.error.put("status", Long.toString(status));
+    this.error.put("status", Integer.toString(status));
     this.error.put("title", title);
     this.handleError();
   }
