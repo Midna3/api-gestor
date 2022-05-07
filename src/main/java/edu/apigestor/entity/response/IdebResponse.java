@@ -90,7 +90,7 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
     private Map<String, Object> others;
 
     @JsonProperty("idebIniciais")
-    private Map<String, Object> idebInicias = new HashMap<>();
+    private Map<String, Object> idebIniciais = new HashMap<>();
     @JsonProperty("idebFinais")
     private Map<String, Object> idebFinais = new HashMap<>();
 
@@ -100,7 +100,7 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
      * @param meanIdebInicial Ideb médio dos anos iniciais.
      */
     public void addMeanIdebInicial(Double meanIdebInicial) {
-      this.idebInicias.put("mean", meanIdebInicial);
+      this.idebIniciais.put("mean", meanIdebInicial);
     }
 
     /**
