@@ -48,23 +48,15 @@ public class IRD {
     private String localizacao;
     @Column(name = "tipo")
     private int tipo;
-    @Column(name = "IRDBaixa")
-    private double percentageBaixa;
-    @Column(name = "IRDMediaBaixa")
-    private double percentageMediaBaixa;
-    @Column(name = "IRDMediaAlta")
-    private double percentageMediaAlta;
-    @Column(name = "IRDAlta")
-    private double percentageAlta;
     @Column(name = "IRDMediaTotal")
-    private double percentageMediaTotal;
+    private double mediaTotal;
 
     /**
      * Retorna o ano dessa entidade.
      *
      * @return inteiro que representa o ano (e.g., 2019).
      */
-    public int getAno() {git
+    public int getAno() {
         return this.ano;
     }
 
@@ -115,48 +107,12 @@ public class IRD {
     }
 
     /**
-     * Retorna a porcentagem de professores que se encaixam na categoria 1 (Regularidade Baixa).
+     * Retorna o nível médio de Regularidade dos professores entre 1 e 4.5.
      *
-     * @return double representando essa porcentagem.
-     */
-    public double getPercentageBaixa() {
-        return percentageBaixa;
-    }
-
-    /**
-     * Retorna a porcentagem de professores que se encaixam na categoria 2 (Regularidade Média-Baixa).
-     *
-     * @return double representando essa porcentagem.
-     */
-    public double getPercentageMediaBaixa() {
-        return percentageMediaBaixa;
-    }
-
-    /**
-     * Retorna a porcentagem de professores que se encaixam na categoria 3 (Regularidade Média-Alta).
-     *
-     * @return double representando essa porcentagem.
-     */
-    public double getPercentageMediaAlta() {
-        return percentageMediaAlta;
-    }
-
-    /**
-     * Retorna a porcentagem de professores que se encaixam na categoria 4 (Regularidade Alta).
-     *
-     * @return double representando essa porcentagem.
-     */
-    public double getPercentageAlta() {
-        return percentageAlta;
-    }
-
-    /**
-     * Retorna a porcentagem de professores que se encaixam na Media Total.
-     *
-     * @return double representando essa porcentagem.
+     * @return double representando essa média.
      */
     public double getPercentageMediaTotal() {
-        return percentageMediaTotal;
+        return mediaTotal;
     }
 
     public static class IRDKey implements Serializable {
