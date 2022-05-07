@@ -17,6 +17,7 @@ public class HomeDadosRegionalResponse extends HomeDadosResponse {
   /**
    * Adiciona a região dessa resposta.
    *
+   * @param region nome da região.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosRegionalResponse region(String region) {

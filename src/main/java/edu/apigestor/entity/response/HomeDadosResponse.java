@@ -25,6 +25,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona um identificador único para essa resposta.
    *
+   * @param id identificador.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosResponse id(long id) {
@@ -35,6 +36,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o índice de Complexidade de Gestão médio.
    *
+   * @param icg ICG médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosResponse icg(Double icg) {
@@ -45,6 +47,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o indicador de esforço docente médio.
    *
+   * @param ied IED médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosResponse ied(Double ied) {
@@ -55,6 +58,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o indicador de adequação da formação docente médio.
    *
+   * @param afd AFD médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosResponse afd(Double afd) {
@@ -65,6 +69,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o indicador de regularidade docente médio.
    *
+   * @param ird IRD médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosResponse ird(Double ird) {
@@ -75,6 +80,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o indicador de distorção idade série médio.
    *
+   * @param tdi TDI médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosResponse tdi(Double tdi) {
@@ -119,14 +125,14 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
     @JsonAnyGetter
     private Map<String, Object> others;
     @JsonProperty("ied")
-    private double meanIED; // esforço docente médio
+    private Double meanIED; // esforço docente médio
     @JsonProperty("ird")
-    private double meanIRD; // regularidade docente média
+    private Double meanIRD; // regularidade docente média
     @JsonProperty("tdi")
-    private double meanTDI; // distorção idade série média
+    private Double meanTDI; // distorção idade série média
     @JsonProperty("icg")
-    private double meanICG; // complexidade de gestão escolar média
+    private Double meanICG; // complexidade de gestão escolar média
     @JsonProperty("afd")
-    private double meanAFD; // adequação de formação docente média
+    private Double meanAFD; // adequação de formação docente média
   }
 }

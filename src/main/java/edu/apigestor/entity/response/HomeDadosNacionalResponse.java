@@ -17,6 +17,7 @@ public class HomeDadosNacionalResponse extends HomeDadosResponse {
   /**
    * Adiciona o país dessa resposta.
    *
+   * @param country nome do país.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosNacionalResponse country(String country) {

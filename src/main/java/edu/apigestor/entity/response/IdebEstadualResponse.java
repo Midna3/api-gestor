@@ -14,8 +14,9 @@ public class IdebEstadualResponse extends IdebResponse {
   private String state;
 
   /**
-   * Adiciona um estado para essa resposta.
+   * Adiciona um estado (UF) para essa resposta.
    *
+   * @param state nome do estado/unidade federativa.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public IdebEstadualResponse state(String state) {

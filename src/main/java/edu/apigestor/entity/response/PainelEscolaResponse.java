@@ -22,6 +22,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona um identificador único para essa resposta.
    *
+   * @param id identificador.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse id(long id) {
@@ -32,6 +33,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o nome da escola.
    *
+   * @param nameEscola nome da escola.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse nameEscola(String nameEscola) {
@@ -42,6 +44,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o código INEP.
    *
+   * @param codINEP código INEP (código da escola).
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse codINEP(long codINEP) {
@@ -52,6 +55,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o endereço.
    *
+   * @param address localização dessa escola.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse address(String address) {
@@ -62,6 +66,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona um número para contato.
    *
+   * @param phoneNumber contato da escola (telefone).
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse phoneNumber(String phoneNumber) {
@@ -72,6 +77,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o Ideb médio dos anos inicias.
    *
+   * @param idebIniciais IDEB médio dos anos iniciais.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse idebIniciais(Double idebIniciais) {
@@ -82,6 +88,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o Ideb médio dos anos finais.
    *
+   * @param idebFinais IDEB médio dos anos finais.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse idebFinais(Double idebFinais) {
@@ -92,9 +99,10 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona a quantidade de matrículas.
    *
+   * @param nMatriculas quantidade de matrículas.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse nMatriculas(Long nMatriculas) {
+  public PainelEscolaResponse nMatriculas(Integer nMatriculas) {
     this.data.nMatriculas = nMatriculas;
     return this;
   }
@@ -102,39 +110,43 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona a quantidade de docentes.
    *
+   * @param nDocentes quantidade de docentes.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse nDocentes(Long nDocentes) {
+  public PainelEscolaResponse nDocentes(Integer nDocentes) {
     this.data.nDocentes = nDocentes;
     return this;
   }
 
   /**
-   * Adiciona o índice de Complexidade de Gestão.
+   * Adiciona o índice de Complexidade de Gestão médio para essa escola.
    *
+   * @param icg ICG médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse icg(Integer icg) {
+  public PainelEscolaResponse icg(Double icg) {
     this.data.icg = icg;
     return this;
   }
 
   /**
-   * Adiciona o indicador de esforço docente.
+   * Adiciona o indicador de esforço docente médio para essa escola.
    *
+   * @param ied IED médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse ied(Integer ied) {
+  public PainelEscolaResponse ied(Double ied) {
     this.data.ied = ied;
     return this;
   }
 
   /**
-   * Adiciona o indicador de adequação da formação docente.
+   * Adiciona o indicador de adequação da formação docente média para essa escola.
    *
+   * @param afd AFD médio.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse afd(Integer afd) {
+  public PainelEscolaResponse afd(Double afd) {
     this.data.afd = afd;
     return this;
   }
@@ -182,14 +194,14 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
     @JsonProperty("idebFinais")
     private Double idebFinais;
     @JsonProperty("matriculas")
-    private Long nMatriculas; // Quantidade de matrículas
+    private Integer nMatriculas; // Quantidade de matrículas
     @JsonProperty("docentes")
-    private Long nDocentes; // Quantidade de docentes
+    private Integer nDocentes; // Quantidade de docentes
     @JsonProperty("icg")
-    private Integer icg; // Indicador da complexidade de gestão
+    private Double icg; // Indicador da complexidade de gestão
     @JsonProperty("ied")
-    private Integer ied; // Indicador do esforço docente
+    private Double ied; // Indicador do esforço docente
     @JsonProperty("afd")
-    private Integer afd; // Indicador de adequação da formação docente
+    private Double afd; // Indicador de adequação da formação docente
   }
 }

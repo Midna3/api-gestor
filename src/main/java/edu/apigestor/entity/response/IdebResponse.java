@@ -36,7 +36,7 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
    *
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public IdebResponse idebIniciais(double idebIniciais) {
+  public IdebResponse idebIniciais(Double idebIniciais) {
     this.data.idebInicias = idebIniciais;
     return this;
   }
@@ -46,7 +46,7 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
    *
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public IdebResponse idebFinais(double idebFinais) {
+  public IdebResponse idebFinais(Double idebFinais) {
     this.data.idebFinais = idebFinais;
     return this;
   }
@@ -89,8 +89,8 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
     private Map<String, Object> others;
 
     @JsonProperty("idebIniciais")
-    private double idebInicias; // ideb dos anos incias
+    private Double idebInicias; // ideb dos anos incias
     @JsonProperty("idebFinais")
-    private double idebFinais; // ideb dos anos finais
+    private Double idebFinais; // ideb dos anos finais
   }
 }
