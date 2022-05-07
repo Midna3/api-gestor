@@ -1,6 +1,7 @@
 package edu.apigestor.entity.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -81,7 +82,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse idebIniciais(Double idebIniciais) {
-    this.data.idebIniciais = idebIniciais;
+    this.data.addMeanIdebInicial(idebIniciais);
     return this;
   }
 
@@ -92,7 +93,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse idebFinais(Double idebFinais) {
-    this.data.idebFinais = idebFinais;
+    this.data.addMeanIdebFinal(idebFinais);
     return this;
   }
 
@@ -121,33 +122,37 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o índice de Complexidade de Gestão médio para essa escola.
    *
-   * @param icg ICG médio.
+   * @param icg      ICG médio.
+   * @param category indica qual classe do indicador de complexidade de gestão esse valor se
+   *                 encontra.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse icg(Double icg) {
-    this.data.icg = icg;
+  public PainelEscolaResponse icg(Double icg, String category) {
+    this.data.addMeanICG(icg, category);
     return this;
   }
 
   /**
    * Adiciona o indicador de esforço docente médio para essa escola.
    *
-   * @param ied IED médio.
+   * @param ied      IED médio.
+   * @param category indica qual classe do indicador de esforço docente esse valor se encontra.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse ied(Double ied) {
-    this.data.ied = ied;
+  public PainelEscolaResponse ied(Double ied, String category) {
+    this.data.addMeanIED(ied, category);
     return this;
   }
 
   /**
    * Adiciona o indicador de adequação da formação docente média para essa escola.
    *
-   * @param afd AFD médio.
+   * @param afd      AFD médio.
+   * @param category indica qual classe da adequação de formação docente esse valor se encontra.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse afd(Double afd) {
-    this.data.afd = afd;
+  public PainelEscolaResponse afd(Double afd, String category) {
+    this.data.addMeanAFD(afd, category);
     return this;
   }
 
@@ -190,18 +195,71 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
 
     // Indicadores educacionais da escola
     @JsonProperty("idebIniciais")
-    private Double idebIniciais;
+    private Map<String, Object> idebIniciais = new HashMap<>();
     @JsonProperty("idebFinais")
-    private Double idebFinais;
+    private Map<String, Object> idebFinais = new HashMap<>();
     @JsonProperty("matriculas")
-    private Integer nMatriculas; // Quantidade de matrículas
+    private Integer nMatriculas;
     @JsonProperty("docentes")
-    private Integer nDocentes; // Quantidade de docentes
+    private Integer nDocentes;
     @JsonProperty("icg")
-    private Double icg; // Indicador da complexidade de gestão
+    private Map<String, Object> icg = new HashMap<>();
     @JsonProperty("ied")
-    private Double ied; // Indicador do esforço docente
+    private Map<String, Object> ied = new HashMap<>();
     @JsonProperty("afd")
-    private Double afd; // Indicador de adequação da formação docente
+    private Map<String, Object> afd = new HashMap<>();
+
+    /**
+     * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param meanIdebInicial Ideb médio dos anos iniciais.
+     */
+    public void addMeanIdebInicial(Double meanIdebInicial) {
+      this.idebIniciais.put("mean", meanIdebInicial);
+    }
+
+    /**
+     * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param meanIdebFinal Ideb médio dos anos finais.
+     */
+    public void addMeanIdebFinal(Double meanIdebFinal) {
+      this.idebFinais.put("mean", meanIdebFinal);
+    }
+
+    /**
+     * Esse método adiciona uma média do IED nos dados da resposta.
+     *
+     * @param meanIED  IED médio.
+     * @param category categoria.
+     */
+    private void addMeanIED(Double meanIED, String category) {
+      this.ied.put("mean", meanIED);
+      this.ied.put("meanCategory", category);
+    }
+
+    /**
+     * Esse método adiciona uma média do ICG nos dados da resposta.
+     *
+     * @param meanICG  ICG médio.
+     * @param category categoria.
+     */
+    private void addMeanICG(Double meanICG, String category) {
+      this.icg.put("mean", meanICG);
+      this.ied.put("meanCategory", category);
+    }
+
+    /**
+     * Esse método adiciona uma média do AFD nos dados da resposta.
+     *
+     * @param meanAFD  AFD médio.
+     * @param category categoria.
+     */
+    private void addMeanAFD(Double meanAFD, String category) {
+      this.afd.put("mean", meanAFD);
+      this.ied.put("meanCategory", category);
+    }
+
+
   }
 }
