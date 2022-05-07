@@ -2,6 +2,7 @@ package edu.apigestor.entity.response;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public IdebResponse idebIniciais(Double idebIniciais) {
-    this.data.idebInicias = idebIniciais;
+    this.data.addMeanIdebInicial(idebIniciais);
     return this;
   }
 
@@ -47,7 +48,7 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public IdebResponse idebFinais(Double idebFinais) {
-    this.data.idebFinais = idebFinais;
+    this.data.addMeanIdebFinal(idebFinais);
     return this;
   }
 
@@ -89,8 +90,27 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
     private Map<String, Object> others;
 
     @JsonProperty("idebIniciais")
-    private Double idebInicias; // ideb dos anos incias
+    private Map<String, Object> idebInicias = new HashMap<>();
     @JsonProperty("idebFinais")
-    private Double idebFinais; // ideb dos anos finais
+    private Map<String, Object> idebFinais = new HashMap<>();
+
+    /**
+     * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param meanIdebInicial Ideb médio dos anos iniciais.
+     */
+    public void addMeanIdebInicial(Double meanIdebInicial) {
+      this.idebInicias.put("mean", meanIdebInicial);
+    }
+
+    /**
+     * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param meanIdebFinal Ideb médio dos anos finais.
+     */
+    public void addMeanIdebFinal(Double meanIdebFinal) {
+      this.idebFinais.put("mean", meanIdebFinal);
+    }
+
   }
 }
