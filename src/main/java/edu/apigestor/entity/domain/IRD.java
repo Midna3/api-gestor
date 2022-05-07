@@ -111,7 +111,7 @@ public class IRD {
      *
      * @return double representando essa média.
      */
-    public double getPercentageMediaTotal() {
+    public double getMediaTotal() {
         return mediaTotal;
     }
 
