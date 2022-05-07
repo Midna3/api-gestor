@@ -1,0 +1,20 @@
+# This workflow verifies the project at every PR opened, reopened or synchronized.
+
+name: Unit Testing with Maven
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout to branch
+      uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verify with Maven
+      run: mvn --batch-mode --update-snapshots verify
