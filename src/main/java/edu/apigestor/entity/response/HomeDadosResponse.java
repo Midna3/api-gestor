@@ -2,6 +2,7 @@ package edu.apigestor.entity.response;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -36,44 +37,48 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   /**
    * Adiciona o índice de Complexidade de Gestão médio.
    *
-   * @param icg ICG médio.
+   * @param icg      ICG médio.
+   * @param category indica qual classe de gestão esse valor se encontra.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public HomeDadosResponse icg(Double icg) {
-    this.data.meanICG = icg;
+  public HomeDadosResponse icg(Double icg, String category) {
+    this.data.addMeanICG(icg, category);
     return this;
   }
 
   /**
    * Adiciona o indicador de esforço docente médio.
    *
-   * @param ied IED médio.
+   * @param ied      IED médio.
+   * @param category indica qual classe de esforço docente esse valor se encontra.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public HomeDadosResponse ied(Double ied) {
-    this.data.meanIED = ied;
+  public HomeDadosResponse ied(Double ied, String category) {
+    this.data.addMeanIED(ied, category);
     return this;
   }
 
   /**
    * Adiciona o indicador de adequação da formação docente médio.
    *
-   * @param afd AFD médio.
+   * @param afd      AFD médio.
+   * @param category indica qual classe da adequação de formação docente esse valor se encontra.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public HomeDadosResponse afd(Double afd) {
-    this.data.meanAFD = afd;
+  public HomeDadosResponse afd(Double afd, String category) {
+    this.data.addMeanAFD(afd, category);
     return this;
   }
 
   /**
    * Adiciona o indicador de regularidade docente médio.
    *
-   * @param ird IRD médio.
+   * @param ird      IRD médio.
+   * @param category indica qual classe do indicador de regularidade esse valor se encontra.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public HomeDadosResponse ird(Double ird) {
-    this.data.meanIRD = ird;
+  public HomeDadosResponse ird(Double ird, String category) {
+    this.data.addMeanIRD(ird, category);
     return this;
   }
 
@@ -84,7 +89,7 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosResponse tdi(Double tdi) {
-    this.data.meanTDI = tdi;
+    this.data.addMeanTDI(tdi);
     return this;
   }
 
@@ -125,14 +130,67 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
     @JsonAnyGetter
     private Map<String, Object> others;
     @JsonProperty("ied")
-    private Double meanIED; // esforço docente médio
+    private Map<String, Object> ied = new HashMap<>();
     @JsonProperty("ird")
-    private Double meanIRD; // regularidade docente média
+    private Map<String, Object> ird = new HashMap<>();
     @JsonProperty("tdi")
-    private Double meanTDI; // distorção idade série média
+    private Map<String, Object> tdi = new HashMap<>();
     @JsonProperty("icg")
-    private Double meanICG; // complexidade de gestão escolar média
+    private Map<String, Object> icg = new HashMap<>();
     @JsonProperty("afd")
-    private Double meanAFD; // adequação de formação docente média
+    private Map<String, Object> afd = new HashMap<>();
+
+    /**
+     * Esse método adiciona uma média do IED nos dados da resposta.
+     *
+     * @param meanIED  IED médio.
+     * @param category categoria.
+     */
+    private void addMeanIED(Double meanIED, String category) {
+      this.ied.put("mean", meanIED);
+      this.ied.put("meanCategory", category);
+    }
+
+    /**
+     * Esse método adiciona uma média do IRD nos dados da resposta.
+     *
+     * @param meanIRD  IRD médio.
+     * @param category categoria.
+     */
+    private void addMeanIRD(Double meanIRD, String category) {
+      this.ird.put("mean", meanIRD);
+      this.ied.put("meanCategory", category);
+    }
+
+    /**
+     * Esse método adiciona uma média do ICG nos dados da resposta.
+     *
+     * @param meanICG  ICG médio.
+     * @param category categoria.
+     */
+    private void addMeanICG(Double meanICG, String category) {
+      this.icg.put("mean", meanICG);
+      this.ied.put("meanCategory", category);
+    }
+
+    /**
+     * Esse método adiciona uma média do AFD nos dados da resposta.
+     *
+     * @param meanAFD  AFD médio.
+     * @param category categoria.
+     */
+    private void addMeanAFD(Double meanAFD, String category) {
+      this.afd.put("mean", meanAFD);
+      this.ied.put("meanCategory", category);
+    }
+
+    /**
+     * Esse método adiciona uma média do TDI nos dados da resposta.
+     *
+     * @param meanTDI TDI médio.
+     */
+    private void addMeanTDI(Double meanTDI) {
+      this.tdi.put("mean", meanTDI);
+    }
   }
 }
