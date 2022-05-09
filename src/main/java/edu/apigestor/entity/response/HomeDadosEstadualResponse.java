@@ -10,13 +10,14 @@ import java.util.Map;
  * @version 1.0
  * @see HomeDadosResponse
  */
-public class HomeDadosEstadualResponse extends HomeDadosResponse{
+public class HomeDadosEstadualResponse extends HomeDadosResponse {
 
-    private String state;
+  private String state;
+
   /**
    * Adiciona o país dessa resposta.
    *
-   * @param State nome do país.
+   * @param state nome do país.
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public HomeDadosEstadualResponse state(String state) {
@@ -27,5 +28,5 @@ public class HomeDadosEstadualResponse extends HomeDadosResponse{
   @Override
   protected Map<String, Object> additionalAttributes() {
     return Map.of("state", this.state);
-  }    
+  }
 }
