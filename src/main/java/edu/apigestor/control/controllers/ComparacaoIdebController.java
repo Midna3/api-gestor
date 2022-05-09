@@ -2,6 +2,8 @@ package edu.apigestor.control.controllers;
 
 
 import edu.apigestor.control.services.IComparacaoIdebService;
+import edu.apigestor.entity.response.IdebEstadualResponse;
+import edu.apigestor.entity.response.IdebResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,17 +24,17 @@ public class ComparacaoIdebController {
   private IComparacaoIdebService comparacaoIdebService;
 
   @GetMapping(path = "/region/{region}")
-  public ResponseEntity<Object> idebRegion(@PathVariable("region") String region) {
+  public ResponseEntity<IdebResponse> idebRegion(@PathVariable("region") String region) {
     return null;
   }
 
   @GetMapping(path = "/country/{country}")
-  public ResponseEntity<Object> idebCountry(@PathVariable("country") String country) {
+  public ResponseEntity<IdebResponse> idebCountry(@PathVariable("country") String country) {
     return null;
   }
 
   @GetMapping(path = "/state/{state}")
-  public ResponseEntity<Object> idebState(@PathVariable("state") String state) {
+  public ResponseEntity<IdebEstadualResponse> idebState(@PathVariable("state") String state) {
     return null;
   }
 

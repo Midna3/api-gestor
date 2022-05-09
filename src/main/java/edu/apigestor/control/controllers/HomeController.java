@@ -1,6 +1,10 @@
 package edu.apigestor.control.controllers;
 
 import edu.apigestor.control.services.IHomeService;
+import edu.apigestor.entity.response.HomeDadosNacionalResponse;
+import edu.apigestor.entity.response.HomeDadosRegionalResponse;
+import edu.apigestor.entity.response.HomeDadosResponse;
+import edu.apigestor.entity.response.HomeEscolaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,22 +26,25 @@ public class HomeController {
   private IHomeService homeService;
 
   @GetMapping(path = "/region/{region}")
-  public ResponseEntity<Object> dataRegion(@PathVariable("region") String region) {
+  public ResponseEntity<HomeDadosRegionalResponse> dataRegion(
+      @PathVariable("region") String region) {
     return null;
   }
 
   @GetMapping(path = "/country/{country}")
-  public ResponseEntity<Object> dataCountry(@PathVariable("country") String country) {
+  public ResponseEntity<HomeDadosNacionalResponse> dataCountry(
+      @PathVariable("country") String country) {
     return null;
   }
 
   @GetMapping(path = "/state/{state}")
-  public ResponseEntity<Object> dataState(@PathVariable("state") String state) {
+  public ResponseEntity<HomeDadosResponse> dataState(@PathVariable("state") String state) {
     return null;
   }
 
   @GetMapping(path = "/schools/{schoolName}")
-  public ResponseEntity<Object> listSchools(@PathVariable("schoolName") String schoolName,
+  public ResponseEntity<HomeEscolaResponse> listSchools(
+      @PathVariable("schoolName") String schoolName,
       @RequestParam(value = "limit", defaultValue = "10") int limit) {
     return null;
   }

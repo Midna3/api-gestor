@@ -2,6 +2,7 @@ package edu.apigestor.control.controllers;
 
 
 import edu.apigestor.control.services.IPainelEscolaService;
+import edu.apigestor.entity.response.PainelEscolaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class PainelEscolaController {
   private IPainelEscolaService painelEscolaService;
 
   @GetMapping(path = "/school/{codINEP}")
-  public ResponseEntity<Object> dataSchool(@PathVariable("codINEP") int codINEP) {
+  public ResponseEntity<PainelEscolaResponse> dataSchool(@PathVariable("codINEP") int codINEP) {
     return null;
   }
 
