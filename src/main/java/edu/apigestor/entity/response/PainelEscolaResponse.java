@@ -32,6 +32,17 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   }
 
   /**
+   * Adiciona um ano para essa resposta.
+   *
+   * @param ano ano dos dados da resposta.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public PainelEscolaResponse ano(int ano) {
+    this.data.year = ano;
+    return this;
+  }
+
+  /**
    * Adiciona o nome da escola.
    *
    * @param nameEscola nome da escola.
@@ -194,6 +205,8 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
     private String phoneNumber;
 
     // Indicadores educacionais da escola
+    @JsonProperty("year")
+    private int year; // Ano dos dados
     @JsonProperty("idebIniciais")
     private Map<String, Object> idebIniciais = new HashMap<>();
     @JsonProperty("idebFinais")
