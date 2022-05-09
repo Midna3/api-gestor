@@ -33,6 +33,17 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
   }
 
   /**
+   * Adiciona um ano para essa resposta.
+   *
+   * @param ano ano dos dados da resposta.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public IdebResponse ano(int ano) {
+    this.data.year = ano;
+    return this;
+  }
+
+  /**
    * Adiciona o Ideb dos anos iniciais.
    *
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
@@ -88,11 +99,12 @@ public abstract class IdebResponse extends AbstractResponse<Map<String, Object>>
 
     @JsonAnyGetter
     private Map<String, Object> others;
-
     @JsonProperty("idebIniciais")
     private Map<String, Object> idebIniciais = new HashMap<>();
     @JsonProperty("idebFinais")
     private Map<String, Object> idebFinais = new HashMap<>();
+    @JsonProperty("year")
+    private int year; // Ano dos dados
 
     /**
      * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
