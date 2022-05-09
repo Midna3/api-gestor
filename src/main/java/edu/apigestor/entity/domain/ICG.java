@@ -21,7 +21,9 @@ import javax.persistence.Table;
 @IdClass(ICG.ICGKey.class)
 @Table(name = "icg")
 public class ICG {
-    
+  @Id
+  @Column(name = "ano")
+  private int ano;
   @Id
   @Column(name = "codEscola")
   private int codINEP;
@@ -38,9 +40,6 @@ public class ICG {
   @Column(name = "codRegiao")
   private int codRegiao;
   @Id
-  @Column(name = "tipo")
-  private int tipo;
-  @Id
   @Column(name = "dependencia")
   private String dependencia; // Não precisamos de get/set, apenas serve para chave primária.
   @Id
@@ -48,7 +47,8 @@ public class ICG {
   private String localizacao; // Não precisamos de get/set, apenas serve para chave primária.
   @Column(name = "ICGNivelMedio")
   private double valorMedio;
-
+  @Column(name = "tipo")
+    private int tipo;
   /**
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse ICG.
    *
@@ -94,7 +94,7 @@ public class ICG {
   public int tipo() {
     return this.tipo;
   }
-
+  
   /**
    * Retorna o valor médio de ICG.
    *
@@ -105,7 +105,8 @@ public class ICG {
   }   
 
   public static class ICGKey implements Serializable {
-
+    
+    private int ano;
     private int codINEP;
     private int codEstado;
     private int codPais;
@@ -113,8 +114,7 @@ public class ICG {
     private int codMunicipio;
     private String dependencia;
     private String localizacao;
-    private int tipo;
-    
+
     @Override
     public boolean equals(Object o) {
       if (this == o) {
@@ -124,20 +124,20 @@ public class ICG {
         return false;
       }
       ICGKey key = (ICGKey) o;
-      return (this.codINEP == key.codINEP) &&
+      return (this.ano == key.ano) && 
+          (this.codINEP == key.codINEP) &&
           (this.codEstado == key.codEstado) &&
           (this.codPais == key.codPais) &&
           (this.codRegiao == key.codRegiao) &&
           (this.codMunicipio == key.codMunicipio) &&
           this.dependencia.equals(key.dependencia) &&
-          this.localizacao.equals(key.localizacao) &&
-          (this.tipo == key.tipo);
+          this.localizacao.equals(key.localizacao);
     }
-    
+
     @Override
     public int hashCode() {
-      return Objects.hash(this.codINEP, this.codEstado, this.codPais, this.codRegiao,
-          this.codMunicipio, this.dependencia, this.localizacao, this.tipo);
+      return Objects.hash(this.ano, this.codINEP, this.codEstado, this.codPais, this.codRegiao,
+          this.codMunicipio, this.dependencia, this.localizacao);
     }
   }
 }
