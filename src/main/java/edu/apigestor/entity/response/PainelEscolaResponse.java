@@ -246,7 +246,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
      */
     private void addMeanICG(Double meanICG, String category) {
       this.icg.put("mean", meanICG);
-      this.ied.put("meanCategory", category);
+      this.icg.put("meanCategory", category);
     }
 
     /**
@@ -257,9 +257,8 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
      */
     private void addMeanAFD(Double meanAFD, String category) {
       this.afd.put("mean", meanAFD);
-      this.ied.put("meanCategory", category);
+      this.afd.put("meanCategory", category);
     }
-
 
   }
 }
