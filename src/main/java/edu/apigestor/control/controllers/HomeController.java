@@ -27,18 +27,22 @@ public class HomeController {
 
   @GetMapping(path = "/region/{region}")
   public ResponseEntity<HomeDadosRegionalResponse> dataRegion(
-      @PathVariable("region") String region) {
+      @PathVariable("region") String region,
+      @RequestParam(name = "year", defaultValue = "2019") int year) {
     return null;
   }
 
   @GetMapping(path = "/country/{country}")
   public ResponseEntity<HomeDadosNacionalResponse> dataCountry(
-      @PathVariable("country") String country) {
+      @PathVariable("country") String country,
+      @RequestParam(name = "year", defaultValue = "2019") int year) {
     return null;
   }
 
   @GetMapping(path = "/state/{state}")
-  public ResponseEntity<HomeDadosResponse> dataState(@PathVariable("state") String state) {
+  public ResponseEntity<HomeDadosResponse> dataState(
+      @PathVariable("state") String state,
+      @RequestParam(name = "year", defaultValue = "2019") int year) {
     return null;
   }
 

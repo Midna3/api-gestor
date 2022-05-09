@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -24,17 +25,23 @@ public class ComparacaoIdebController {
   private IComparacaoIdebService comparacaoIdebService;
 
   @GetMapping(path = "/region/{region}")
-  public ResponseEntity<IdebResponse> idebRegion(@PathVariable("region") String region) {
+  public ResponseEntity<IdebResponse> idebRegion(
+      @PathVariable("region") String region,
+      @RequestParam(name = "year", defaultValue = "2019") int year) {
     return null;
   }
 
   @GetMapping(path = "/country/{country}")
-  public ResponseEntity<IdebResponse> idebCountry(@PathVariable("country") String country) {
+  public ResponseEntity<IdebResponse> idebCountry(
+      @PathVariable("country") String country,
+      @RequestParam(name = "year", defaultValue = "2019") int year) {
     return null;
   }
 
   @GetMapping(path = "/state/{state}")
-  public ResponseEntity<IdebEstadualResponse> idebState(@PathVariable("state") String state) {
+  public ResponseEntity<IdebEstadualResponse> idebState(
+      @PathVariable("state") String state,
+      @RequestParam(name = "year", defaultValue = "2019") int year) {
     return null;
   }
 
