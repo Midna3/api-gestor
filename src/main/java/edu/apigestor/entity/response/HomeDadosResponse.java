@@ -35,6 +35,17 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   }
 
   /**
+   * Adiciona um ano para essa resposta.
+   *
+   * @param ano ano dos dados da resposta.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse ano(int ano) {
+    this.data.year = ano;
+    return this;
+  }
+
+  /**
    * Adiciona o índice de Complexidade de Gestão médio.
    *
    * @param icg      ICG médio.
@@ -139,6 +150,8 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
     private Map<String, Object> icg = new HashMap<>();
     @JsonProperty("afd")
     private Map<String, Object> afd = new HashMap<>();
+    @JsonProperty("year")
+    private int year; // Ano dos dados
 
     /**
      * Esse método adiciona uma média do IED nos dados da resposta.
