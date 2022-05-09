@@ -1,5 +1,7 @@
 package edu.apigestor.data.repository;
 
+import edu.apigestor.entity.domain.ICG;
+import edu.apigestor.entity.domain.ICG.ICGKey;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -9,6 +11,6 @@ import org.springframework.data.repository.Repository;
  *
  * @version 0.1
  */
-public interface ICGRepository extends Repository<Object, Object> {
+public interface ICGRepository extends Repository<ICG, ICGKey> {
 
 }
