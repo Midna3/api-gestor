@@ -21,6 +21,7 @@ import javax.persistence.Table;
 @IdClass(ICG.ICGKey.class)
 @Table(name = "icg")
 public class ICG {
+
   @Id
   @Column(name = "ano")
   private int ano;
@@ -48,7 +49,8 @@ public class ICG {
   @Column(name = "ICGNivelMedio")
   private double valorMedio;
   @Column(name = "tipo")
-    private int tipo;
+  private int tipo;
+
   /**
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse ICG.
    *
@@ -94,18 +96,18 @@ public class ICG {
   public int tipo() {
     return this.tipo;
   }
-  
+
   /**
    * Retorna o valor médio de ICG.
    *
    * @return double representando esse valor.
    */
-  public double valorMedio(){
+  public double valorMedio() {
     return this.valorMedio;
-  }   
+  }
 
   public static class ICGKey implements Serializable {
-    
+
     private int ano;
     private int codINEP;
     private int codEstado;
@@ -124,7 +126,7 @@ public class ICG {
         return false;
       }
       ICGKey key = (ICGKey) o;
-      return (this.ano == key.ano) && 
+      return (this.ano == key.ano) &&
           (this.codINEP == key.codINEP) &&
           (this.codEstado == key.codEstado) &&
           (this.codPais == key.codPais) &&
