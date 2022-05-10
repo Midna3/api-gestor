@@ -76,12 +76,26 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   }
 
   /**
+   * Adiciona a administração dessa escola (Privada, Federal, Municipal, etc).
+   *
+   * @param administration administração.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public PainelEscolaResponse administration(String administration) {
+    this.data.administration = administration;
+    return this;
+  }
+
+
+  /**
    * Adiciona um número para contato.
    *
+   * @param ddd         ddd do número de telefone.
    * @param phoneNumber contato da escola (telefone).
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse phoneNumber(String phoneNumber) {
+  public PainelEscolaResponse phoneNumber(String ddd, String phoneNumber) {
+    this.data.ddd = ddd;
     this.data.phoneNumber = phoneNumber;
     return this;
   }
@@ -225,6 +239,10 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
     private String address;
     @JsonProperty("phone")
     private String phoneNumber;
+    @JsonProperty("ddd")
+    private String ddd;
+    @JsonProperty("adm")
+    private String administration;
 
     // Indicadores educacionais da escola
     @JsonProperty("year")
