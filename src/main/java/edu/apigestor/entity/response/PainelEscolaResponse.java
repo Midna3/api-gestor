@@ -59,7 +59,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
    * @param codINEP código INEP (código da escola).
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse codINEP(long codINEP) {
+  public PainelEscolaResponse codINEP(int codINEP) {
     this.data.codINEP = codINEP;
     return this;
   }
@@ -198,7 +198,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
     @JsonProperty("name")
     private String nameEscola;
     @JsonProperty("inep")
-    private long codINEP;
+    private int codINEP;
     @JsonProperty("address")
     private String address;
     @JsonProperty("phone")
@@ -227,7 +227,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
      *
      * @param meanIdebInicial Ideb médio dos anos iniciais.
      */
-    public void addMeanIdebInicial(Double meanIdebInicial) {
+    private void addMeanIdebInicial(Double meanIdebInicial) {
       this.idebIniciais.put("mean", meanIdebInicial);
     }
 
@@ -236,7 +236,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
      *
      * @param meanIdebFinal Ideb médio dos anos finais.
      */
-    public void addMeanIdebFinal(Double meanIdebFinal) {
+    private void addMeanIdebFinal(Double meanIdebFinal) {
       this.idebFinais.put("mean", meanIdebFinal);
     }
 
