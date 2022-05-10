@@ -18,8 +18,7 @@ public class HomeEscolaResponse extends AbstractResponse<List<Map<String, Object
 
   private static final String RESOURCE_TYPE = "schoolInfo";
 
-  private final List<String> nameEscolas = new ArrayList<>(); // Armazena os nomes das escolas
-  private final List<Integer> codesINEP = new ArrayList<>(); // Armazena os códigos INEP
+  private final List<SchoolEntry> schools = new ArrayList<>();
   private final List<Long> ids = new ArrayList<>(); // Armazena os IDs da resposta
 
   private boolean hasError = false;
@@ -29,11 +28,16 @@ public class HomeEscolaResponse extends AbstractResponse<List<Map<String, Object
    *
    * @param nameEscola nome da escola.
    * @param codINEP    código INEP da escola.
+   * @param address    endereço da escola (Cidade/Estado).
    * @param id         id da escola.
    */
-  public void addEntry(String nameEscola, int codINEP, long id) {
-    this.nameEscolas.add(nameEscola);
-    this.codesINEP.add(codINEP);
+  public void addEntry(String nameEscola, int codINEP, String address, long id) {
+    SchoolEntry entry = new SchoolEntry();
+    entry.name = nameEscola;
+    entry.codINEP = codINEP;
+    entry.address = address;
+
+    this.schools.add(entry);
     this.ids.add(id);
   }
 
@@ -49,19 +53,14 @@ public class HomeEscolaResponse extends AbstractResponse<List<Map<String, Object
     }
 
     List<Map<String, Object>> data = new ArrayList<>();
-    int size = this.nameEscolas.size();
+    int size = this.schools.size();
 
     for (int i = 0; i < size; i++) {
       Map<String, Object> m = new LinkedHashMap<>();
 
       m.put("type", HomeEscolaResponse.RESOURCE_TYPE);
       m.put("id", this.ids.get(i));
-
-      SchoolEntry entry = new SchoolEntry();
-      entry.name = this.nameEscolas.get(i);
-      entry.codINEP = this.codesINEP.get(i);
-
-      m.put("attributes", entry);
+      m.put("attributes", this.schools.get(i));
 
       data.add(m);
     }
@@ -81,5 +80,7 @@ public class HomeEscolaResponse extends AbstractResponse<List<Map<String, Object
     private String name; // Nome da escola
     @JsonProperty("inep")
     private int codINEP; // Código INEP da escola
+    @JsonProperty("address")
+    private String address; // Endereço da escola
   }
 }
