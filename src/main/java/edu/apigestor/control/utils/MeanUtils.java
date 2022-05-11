@@ -1,5 +1,7 @@
 package edu.apigestor.control.utils;
 
+import edu.apigestor.entity.domain.AFD;
+import edu.apigestor.entity.domain.IED;
 import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -14,6 +16,37 @@ public final class MeanUtils {
 
   private MeanUtils() {
 
+  }
+
+  /**
+   * Método utilitário, dado um objeto AFD calcula a média e retorna um par média-categoria.
+   *
+   * @param afd {@link AFD}.
+   * @return uma {@link MeanCategory} contendo a média e a categoria.
+   */
+  public static MeanCategory meanAFD(AFD afd, Function<Double, String> mapper) {
+    return MeanUtils.meanOf(1, 6, mapper,
+        afd.percentageG1(),
+        afd.percentageG2(),
+        afd.percentageG3(),
+        afd.percentageG4(),
+        afd.percentageG5());
+  }
+
+  /**
+   * Método utilitário, dado um objeto IED calcula a média e retorna um par média-categoria.
+   *
+   * @param ied {@link IED}.
+   * @return uma {@link MeanCategory} contendo a média e a categoria.
+   */
+  public static MeanCategory meanIED(IED ied, Function<Double, String> mapper) {
+    return MeanUtils.meanOf(1, 7, mapper,
+        ied.getPercentageN1(),
+        ied.getPercentageN2(),
+        ied.getPercentageN3(),
+        ied.getPercentageN4(),
+        ied.getPercentageN5(),
+        ied.getPercentageN6());
   }
 
   /**
