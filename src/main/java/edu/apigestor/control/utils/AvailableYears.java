@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public final class AvailableYears {
 
-  private static final int[] YEARS = IntStream.range(2019, 2020 + 1).toArray();
+  private static final int[] YEARS = IntStream.range(2017, 2020 + 1).toArray();
 
   private AvailableYears() {
 
