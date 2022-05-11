@@ -24,7 +24,7 @@ jobs:
         echo "$strN"
         if [[ "$strN" =~ [0-9](\.[0-9]+)+ ]]; then
         echo "::set-output name=TAG::$str"
-        echo "::set-output name=TAG_NUMBER::$str"
+        echo "::set-output name=TAG_NUMBER::$strN"
         echo "${{ github.event.commits[0].message }}"
         else
         echo "Version not found, stopping."

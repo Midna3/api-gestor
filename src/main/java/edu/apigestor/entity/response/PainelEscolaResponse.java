@@ -59,7 +59,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
    * @param codINEP código INEP (código da escola).
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse codINEP(long codINEP) {
+  public PainelEscolaResponse codINEP(int codINEP) {
     this.data.codINEP = codINEP;
     return this;
   }
@@ -76,12 +76,26 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   }
 
   /**
+   * Adiciona a administração dessa escola (Privada, Federal, Municipal, etc).
+   *
+   * @param administration administração.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public PainelEscolaResponse administration(String administration) {
+    this.data.administration = administration;
+    return this;
+  }
+
+
+  /**
    * Adiciona um número para contato.
    *
+   * @param ddd         ddd do número de telefone.
    * @param phoneNumber contato da escola (telefone).
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
-  public PainelEscolaResponse phoneNumber(String phoneNumber) {
+  public PainelEscolaResponse phoneNumber(String ddd, String phoneNumber) {
+    this.data.ddd = ddd;
     this.data.phoneNumber = phoneNumber;
     return this;
   }
@@ -98,6 +112,17 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
   }
 
   /**
+   * Adiciona a meta do Ideb dos anos inicias.
+   *
+   * @param idebIniciaisProjection meta do IDEB dos anos inicias.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public PainelEscolaResponse idebIniciaisProjection(Double idebIniciaisProjection) {
+    this.data.addProjectionIdebInicial(idebIniciaisProjection);
+    return this;
+  }
+
+  /**
    * Adiciona o Ideb médio dos anos finais.
    *
    * @param idebFinais IDEB médio dos anos finais.
@@ -105,6 +130,17 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
    */
   public PainelEscolaResponse idebFinais(Double idebFinais) {
     this.data.addMeanIdebFinal(idebFinais);
+    return this;
+  }
+
+  /**
+   * Adiciona a meta do Ideb dos anos finais.
+   *
+   * @param idebFinaisProjection meta do IDEB dos anos finais.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public PainelEscolaResponse idebFinaisProjection(Double idebFinaisProjection) {
+    this.data.addProjectionIdebInicial(idebFinaisProjection);
     return this;
   }
 
@@ -198,11 +234,15 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
     @JsonProperty("name")
     private String nameEscola;
     @JsonProperty("inep")
-    private long codINEP;
+    private int codINEP;
     @JsonProperty("address")
     private String address;
     @JsonProperty("phone")
     private String phoneNumber;
+    @JsonProperty("ddd")
+    private String ddd;
+    @JsonProperty("adm")
+    private String administration;
 
     // Indicadores educacionais da escola
     @JsonProperty("year")
@@ -227,8 +267,17 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
      *
      * @param meanIdebInicial Ideb médio dos anos iniciais.
      */
-    public void addMeanIdebInicial(Double meanIdebInicial) {
+    private void addMeanIdebInicial(Double meanIdebInicial) {
       this.idebIniciais.put("mean", meanIdebInicial);
+    }
+
+    /**
+     * Esse método adiciona a meta do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param projection meta do Ideb para os anos iniciais.
+     */
+    private void addProjectionIdebInicial(Double projection) {
+      this.idebIniciais.put("projection", projection);
     }
 
     /**
@@ -236,8 +285,17 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
      *
      * @param meanIdebFinal Ideb médio dos anos finais.
      */
-    public void addMeanIdebFinal(Double meanIdebFinal) {
+    private void addMeanIdebFinal(Double meanIdebFinal) {
       this.idebFinais.put("mean", meanIdebFinal);
+    }
+
+    /**
+     * Esse método adiciona a meta do IDEB dos anos finais nos dados da resposta.
+     *
+     * @param projection meta do Ideb para os anos finais.
+     */
+    private void addProjectionIdebFinal(Double projection) {
+      this.idebFinais.put("projection", projection);
     }
 
     /**
