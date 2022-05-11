@@ -49,6 +49,10 @@ public class IDEB {
     private double anosIniciais;
     @Column(name = "anosFinais")
     private double anosFinais;
+    @Column(name = "projecaoAI")
+    private double projecaoAI;
+    @Column(name = "projecaoAF")
+    private double projecaoAF;
 
     /**
      * Retorna o ano dessa entidade.
@@ -113,8 +117,6 @@ public class IDEB {
     public double getAnosIniciais() {
         return anosIniciais;
     }
-
-
     /**
      * Retorna a nota do IDEB nos anos Finais dessa entidade.
      *
@@ -122,6 +124,23 @@ public class IDEB {
      */
     public double getAnosFinais() {
         return anosFinais;
+    }
+
+    /**
+     * Retorna a projeção do IDEB nos anos Iniciais dessa entidade.
+     *
+     * @return double que representa a projeção.
+     */
+    public double getProjecaoAI() {
+        return projecaoAI;
+    }
+    /**
+     * Retorna a projeção do IDEB nos anos Finais dessa entidade.
+     *
+     * @return double que representa a projeção.
+     */
+    public double getProjecaoAF() {
+        return projecaoAF;
     }
 
 
