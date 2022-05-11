@@ -51,6 +51,24 @@ public class ICG {
   @Column(name = "tipo")
   private Integer tipo;
 
+  public ICG(int ano, int codINEP, int codEstado, int codPais, int codMunicipio, int codRegiao,
+      String dependencia, String localizacao, Double valorMedio, Integer tipo) {
+    this.ano = ano;
+    this.codINEP = codINEP;
+    this.codEstado = codEstado;
+    this.codPais = codPais;
+    this.codMunicipio = codMunicipio;
+    this.codRegiao = codRegiao;
+    this.dependencia = dependencia;
+    this.localizacao = localizacao;
+    this.valorMedio = valorMedio;
+    this.tipo = tipo;
+  }
+
+  public ICG() {
+
+  }
+
   /**
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse ICG.
    *
