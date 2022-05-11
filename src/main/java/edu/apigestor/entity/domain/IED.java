@@ -47,19 +47,19 @@ public class IED {
     @Column(name = "localizacao") // Não precisamos de get/set, apenas serve para chave primária.
     private String localizacao;
     @Column(name = "tipo")
-    private int tipo;
+    private Integer tipo;
     @Column(name = "IEDFundamentalTotalNivel1")
-    private double percentageN1;
+    private Double percentageN1;
     @Column(name = "IEDFundamentalTotalNivel2")
-    private double percentageN2;
+    private Double percentageN2;
     @Column(name = "IEDFundamentalTotalNivel3")
-    private double percentageN3;
+    private Double percentageN3;
     @Column(name = "IEDFundamentalTotalNivel4")
-    private double percentageN4;
+    private Double percentageN4;
     @Column(name = "IEDFundamentalTotalNivel5")
-    private double percentageN5;
+    private Double percentageN5;
     @Column(name = "IEDFundamentalTotalNivel6")
-    private double percentageN6;
+    private Double percentageN6;
 
     /**
      * Retorna o ano dessa entidade.
@@ -112,7 +112,7 @@ public class IED {
      *
      * @return inteiro que representa o tipo.
      */
-    public int getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
@@ -121,7 +121,7 @@ public class IED {
      *
      * @return double representando essa porcentagem.
      */
-    public double getPercentageN1() {
+    public Double getPercentageN1() {
         return percentageN1;
     }
 
@@ -130,7 +130,7 @@ public class IED {
      *
      * @return double representando essa porcentagem.
      */
-    public double getPercentageN2() {
+    public Double getPercentageN2() {
         return percentageN2;
     }
 
@@ -139,7 +139,7 @@ public class IED {
      *
      * @return double representando essa porcentagem.
      */
-    public double getPercentageN3() {
+    public Double getPercentageN3() {
         return percentageN3;
     }
 
@@ -148,7 +148,7 @@ public class IED {
      *
      * @return double representando essa porcentagem.
      */
-    public double getPercentageN4() {
+    public Double getPercentageN4() {
         return percentageN4;
     }
 
@@ -157,7 +157,7 @@ public class IED {
      *
      * @return double representando essa porcentagem.
      */
-    public double getPercentageN5() {
+    public Double getPercentageN5() {
         return percentageN5;
     }
 
@@ -166,7 +166,7 @@ public class IED {
      *
      * @return double representando essa porcentagem.
      */
-    public double getPercentageN6() {
+    public Double getPercentageN6() {
         return percentageN6;
     }
 

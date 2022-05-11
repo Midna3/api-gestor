@@ -47,17 +47,17 @@ public class AFD {
   @Column(name = "localizacao")
   private String localizacao; // Não precisamos de get/set, apenas serve para chave primária.
   @Column(name = "tipo")
-  private int tipo;
+  private Integer tipo;
   @Column(name = "AFDFundamentalTotalG1")
-  private double percentageG1;
+  private Double percentageG1;
   @Column(name = "AFDFundamentalTotalG2")
-  private double percentageG2;
+  private Double percentageG2;
   @Column(name = "AFDFundamentalTotalG3")
-  private double percentageG3;
+  private Double percentageG3;
   @Column(name = "AFDFundamentalTotalG4")
-  private double percentageG4;
+  private Double percentageG4;
   @Column(name = "AFDFundamentalTotalG5")
-  private double percentageG5;
+  private Double percentageG5;
 
   /**
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse AFD.
@@ -101,7 +101,7 @@ public class AFD {
    *
    * @return inteiro que representa o tipo.
    */
-  public int tipo() {
+  public Integer tipo() {
     return this.tipo;
   }
 
@@ -119,7 +119,7 @@ public class AFD {
    *
    * @return double representando essa porcentagem.
    */
-  public double percentageG1() {
+  public Double percentageG1() {
     return this.percentageG1;
   }
 
@@ -128,7 +128,7 @@ public class AFD {
    *
    * @return double representando essa porcentagem.
    */
-  public double percentageG2() {
+  public Double percentageG2() {
     return this.percentageG2;
   }
 
@@ -137,7 +137,7 @@ public class AFD {
    *
    * @return double representando essa porcentagem.
    */
-  public double percentageG3() {
+  public Double percentageG3() {
     return this.percentageG3;
   }
 
@@ -146,7 +146,7 @@ public class AFD {
    *
    * @return double representando essa porcentagem.
    */
-  public double percentageG4() {
+  public Double percentageG4() {
     return this.percentageG4;
   }
 
@@ -155,7 +155,7 @@ public class AFD {
    *
    * @return double representando essa porcentagem.
    */
-  public double percentageG5() {
+  public Double percentageG5() {
     return this.percentageG5;
   }
 

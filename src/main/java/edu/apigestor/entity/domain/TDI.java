@@ -47,9 +47,9 @@ public class TDI {
     @Column(name = "localizacao") // Não precisamos de get/set, apenas serve para chave primária.
     private String localizacao;
     @Column(name = "tipo")
-    private int tipo;
+    private Integer tipo;
     @Column(name = "TDIFundamentalTotal")
-    private double percentageFundamentalTotal;
+    private Double percentageFundamentalTotal;
 
     /**
      * Retorna o ano dessa entidade.
@@ -102,7 +102,7 @@ public class TDI {
      *
      * @return inteiro que representa o tipo.
      */
-    public int getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
@@ -111,7 +111,7 @@ public class TDI {
      *
      * @return double representando essa porcentagem.
      */
-    public double getPercentageFundamentalTotal() {
+    public Double getPercentageFundamentalTotal() {
         return percentageFundamentalTotal;
     }
 
