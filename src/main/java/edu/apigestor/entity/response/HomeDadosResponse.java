@@ -116,6 +116,17 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
   }
 
   /**
+   * Adiciona a meta do Ideb dos anos inicias.
+   *
+   * @param idebIniciaisProjection meta do IDEB dos anos inicias.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse idebIniciaisProjection(Double idebIniciaisProjection) {
+    this.data.addProjectionIdebInicial(idebIniciaisProjection);
+    return this;
+  }
+
+  /**
    * Adiciona o Ideb dos anos finais.
    *
    * @param idebFinais IDEB médio.
@@ -123,6 +134,17 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
    */
   public HomeDadosResponse idebFinais(Double idebFinais) {
     this.data.addMeanIdebFinal(idebFinais);
+    return this;
+  }
+
+  /**
+   * Adiciona a meta do Ideb dos anos finais.
+   *
+   * @param idebFinaisProjection meta do IDEB dos anos finais.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse idebFinaisProjection(Double idebFinaisProjection) {
+    this.data.addProjectionIdebFinal(idebFinaisProjection);
     return this;
   }
 
@@ -242,12 +264,30 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
     }
 
     /**
+     * Esse método adiciona a meta do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param projection meta do Ideb para os anos iniciais.
+     */
+    private void addProjectionIdebInicial(Double projection) {
+      this.idebIniciais.put("projection", projection);
+    }
+
+    /**
      * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
      *
      * @param meanIdebFinal Ideb médio dos anos finais.
      */
     private void addMeanIdebFinal(Double meanIdebFinal) {
       this.idebFinais.put("mean", meanIdebFinal);
+    }
+
+    /**
+     * Esse método adiciona a meta do IDEB dos anos finais nos dados da resposta.
+     *
+     * @param projection meta do Ideb para os anos finais.
+     */
+    private void addProjectionIdebFinal(Double projection) {
+      this.idebFinais.put("projection", projection);
     }
   }
 }
