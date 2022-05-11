@@ -5,6 +5,9 @@ import edu.apigestor.control.mappers.CountryMapper;
 import edu.apigestor.control.mappers.CountryMapper.CountryID;
 import edu.apigestor.control.services.IHomeService;
 import edu.apigestor.control.utils.AvailableYears;
+import edu.apigestor.control.utils.MeanUtils;
+import edu.apigestor.control.utils.MeanUtils.MeanCategory;
+import edu.apigestor.control.utils.MeanUtils.MeanEntry;
 import edu.apigestor.data.repository.AFDRepository;
 import edu.apigestor.data.repository.ICGRepository;
 import edu.apigestor.data.repository.IDEBRepository;
@@ -70,37 +73,28 @@ public class Home implements IHomeService {
     }
 
     IED ied = this.iedRepository.getIEDForCountry(code, year);
-    double meanIED = (1 * ied.getPercentageN1() +
-        2 * ied.getPercentageN2() +
-        3 * ied.getPercentageN3() +
-        4 * ied.getPercentageN4() +
-        5 * ied.getPercentageN5() +
-        6 * ied.getPercentageN6()) / 100;
+    MeanCategory meanIED = MeanUtils.meanIED(ied, CategoryMapper::getIEDCategory);
 
     IRD ird = this.irdRepository.getIRDForCountry(code, year);
-    double meanIRD = ird.getMediaTotal();
+    MeanCategory meanIRD = MeanCategory.of(ird.getMediaTotal(), CategoryMapper::getIRDCategory);
 
     TDI tdi = this.tdiRepository.getTDIForCountry(code, year);
-    double meanTDI = tdi.getPercentageFundamentalTotal();
+    Double meanTDI = tdi.getPercentageFundamentalTotal();
 
     ICG icg = this.icgRepository.getICGForCountry(code, year);
-    double meanICG = icg.valorMedio();
+    MeanCategory meanICG = MeanCategory.of(icg.valorMedio(), CategoryMapper::getICGCategory);
 
     AFD afd = this.afdRepository.getAFDForCountry(code, year);
-    double meanAFD = (1 * afd.percentageG1() +
-        2 * afd.percentageG2() +
-        3 * afd.percentageG3() +
-        4 * afd.percentageG4() +
-        5 * afd.percentageG5()) / 100;
+    MeanCategory meanAFD = MeanUtils.meanAFD(afd, CategoryMapper::getAFDCategory);
 
     response.country(countryName)
         .ano(year)
         .id(responseID)
-        .ied(meanIED, CategoryMapper.getIEDCategory(meanIED))
-        .ird(meanIRD, CategoryMapper.getIRDCategory(meanIRD))
+        .ied(meanIED.mean(), meanIED.category())
+        .ird(meanIRD.mean(), meanIRD.category())
         .tdi(meanTDI)
-        .icg(meanICG, CategoryMapper.getICGCategory(meanICG))
-        .afd(meanAFD, CategoryMapper.getAFDCategory(meanAFD))
+        .icg(meanICG.mean(), meanICG.category())
+        .afd(meanAFD.mean(), meanAFD.category())
         .idebFinais(null)
         .idebFinaisProjection(null)
         .idebIniciais(null)
