@@ -3,6 +3,7 @@ package edu.apigestor.control.services.imp;
 import edu.apigestor.control.services.IHomeService;
 import edu.apigestor.data.repository.AFDRepository;
 import edu.apigestor.data.repository.ICGRepository;
+import edu.apigestor.data.repository.IDEBRepository;
 import edu.apigestor.data.repository.IEDRepository;
 import edu.apigestor.data.repository.IRDRepository;
 import edu.apigestor.data.repository.TDIRepository;
@@ -26,5 +27,8 @@ public class Home implements IHomeService {
 
   @Autowired
   private AFDRepository afdRepository;
+
+  @Autowired
+  private IDEBRepository idebRepository;
 
 }

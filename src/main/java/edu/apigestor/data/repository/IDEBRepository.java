@@ -1,5 +1,7 @@
 package edu.apigestor.data.repository;
 
+import edu.apigestor.entity.domain.AFD;
+import edu.apigestor.entity.domain.AFD.AFDKey;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -9,6 +11,9 @@ import org.springframework.data.repository.Repository;
  *
  * @version 0.1
  */
-public interface IDEBRepository extends Repository<Object, Object> {
+public interface IDEBRepository extends Repository<AFD, AFDKey> {
+  // Temporariamente estamos usando as chaves do AFD já que ainda não possuímos essa entidade
+  //  implementada completamente (dessa forma, conseguimos executar o código).
+  //  Alterar quando tivermos essa entidade.
 
 }
