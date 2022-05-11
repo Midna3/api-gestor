@@ -84,4 +84,32 @@ public final class CategoryMapper {
     }
   }
 
+  /**
+   * O indicador de complexidade de gestão pode ser classificado em 6 categorias, esse método
+   * retorna a categoria para um dado valor.
+   *
+   * @param value valor do indicador de complexidade de gestão em [1.0, 6.0].
+   * @return uma String que determina a categoria.
+   */
+  public static String getICGCategory(double value) {
+    if (value < 2.0) {
+      return "Porte inferior a 50 matrículas, operando em único turno e etapa e apresentando a "
+          + "Educação Infantil ou Anos Iniciais como etapa mais elevada.";
+    } else if (value < 3.0) {
+      return "Porte entre 50 e 300 matrículas, operando em 2 turnos, com oferta de até 2 etapas e "
+          + "apresentando a Educação Infantil ou Anos Iniciais como etapa mais elevada.";
+    } else if (value < 4.0) {
+      return "Porte entre 50 e 500 matrículas, operando em 2 turnos, com 2 ou 3 etapas e "
+          + "apresentando os Anos Finais como etapa mais elevada.";
+    } else if (value < 5.0) {
+      return "Porte entre 150 e 1000 matrículas, operando em 2 ou 3 turnos, com 2 ou 3 etapas, "
+          + "apresentando Ensino Médio/profissional ou a EJA como etapa mais elevada.";
+    } else if (value < 6.0) {
+      return "Porte entre 150 e 1000 matrículas, operando em 3 turnos, com 2 ou 3 etapas, "
+          + "apresentando a EJA como etapa mais elevada.";
+    } else {
+      return "Porte superior à 500 matrículas, operando em 3 turnos, com 4 ou mais etapas, "
+          + "apresentando a EJA como etapa mais elevada.";
+    }
+  }
 }

@@ -11,6 +11,7 @@ import edu.apigestor.data.repository.IDEBRepository;
 import edu.apigestor.data.repository.IEDRepository;
 import edu.apigestor.data.repository.IRDRepository;
 import edu.apigestor.data.repository.TDIRepository;
+import edu.apigestor.entity.domain.ICG;
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.TDI;
@@ -81,11 +82,16 @@ public class Home implements IHomeService {
     TDI tdi = this.tdiRepository.getTDIForCountry(code, year);
     double meanTDI = tdi.getPercentageFundamentalTotal();
 
+    ICG icg = this.icgRepository.getICGForCountry(code, year);
+    double meanICG = icg.valorMedio();
+
     response.country(countryName)
+        .ano(year)
         .id(responseID)
         .ied(meanIED, CategoryMapper.getIEDCategory(meanIED))
         .ird(meanIRD, CategoryMapper.getIRDCategory(meanIRD))
-        .tdi(meanTDI);
+        .tdi(meanTDI)
+        .icg(meanICG, CategoryMapper.getICGCategory(meanICG));
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }

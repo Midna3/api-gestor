@@ -2,6 +2,7 @@ package edu.apigestor.data.repository;
 
 import edu.apigestor.entity.domain.ICG;
 import edu.apigestor.entity.domain.ICG.ICGKey;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -12,5 +13,14 @@ import org.springframework.data.repository.Repository;
  * @version 0.1
  */
 public interface ICGRepository extends Repository<ICG, ICGKey> {
+
+  @Query("SELECT icg FROM ICG icg WHERE "
+      + "icg.codPais = :codPais AND "
+      + "icg.ano = :year AND "
+      + "icg.tipo = 0 AND "
+      + "icg.localizacao = 'Total' AND "
+      + "icg.dependencia = 'Total' AND "
+      + "icg.tipo = 0")
+  ICG getICGForCountry(int codPais, int year);
 
 }
