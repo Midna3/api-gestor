@@ -140,7 +140,7 @@ public final class PainelEscolaResponse extends AbstractResponse<Map<String, Obj
    * @return essa mesma resposta, permitindo <i>method chaining</i>.
    */
   public PainelEscolaResponse idebFinaisProjection(Double idebFinaisProjection) {
-    this.data.addProjectionIdebInicial(idebFinaisProjection);
+    this.data.addProjectionIdebFinal(idebFinaisProjection);
     return this;
   }
 
