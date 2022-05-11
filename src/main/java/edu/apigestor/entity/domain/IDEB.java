@@ -9,18 +9,18 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 /**
- * A classe {@link TDI} representa a tabela <b>tdi</b> no Banco de Dados, contendo diferentes
- * informações sobre a Distorção idade Serie. Essa classe funcionado como uma entidade do JPA (Java
- * Persistence API) e pode ser utilizada pelos repositórios para fazer leitura no Bando de Dados,
- * instâncias representam o indicador para o EF.
+ * A classe {@link IDEB} representa a tabela <b>ideb</b> no Banco de Dados, contendo diferentes
+ * informações sobre o Índice de Desenvolvimento da Educação Básica. Essa classe funcionado como uma
+ * entidade do JPA (Java Persistence API) e pode ser utilizada pelos repositórios para fazer leitura
+ * no Bando de Dados, instâncias representam o indicador para o EF.
  *
- * @author LuizMFL
+ * @author ArthurFS
  * @version 1.0
  */
 @Entity
-@IdClass(TDI.TDIKey.class)
-@Table(name = "tdi")
-public class TDI {
+@IdClass(IDEB.IDEBKey.class)
+@Table(name = "ideb_corrigido")
+public class IDEB {
 
   @Id
   @Column(name = "ano")
@@ -41,18 +41,22 @@ public class TDI {
   @Column(name = "codRegiao")
   private int codRegiao;
   @Id
-  @Column(name = "dependencia") // Não precisamos de get/set, apenas serve para chave primária.
+  @Column(name = "rede")
   private String dependencia;
-  @Id
-  @Column(name = "localizacao") // Não precisamos de get/set, apenas serve para chave primária.
-  private String localizacao;
   @Column(name = "tipo")
-  private Integer tipo;
-  @Column(name = "TDIFundamentalTotal")
-  private Double percentageFundamentalTotal;
+  private int tipo;
+  @Column(name = "anosIniciais")
+  private double anosIniciais;
+  @Column(name = "anosFinais")
+  private double anosFinais;
+  @Column(name = "projecaoAI")
+  private double projecaoAI;
+  @Column(name = "projecaoAF")
+  private double projecaoAF;
 
-  public TDI(int ano, int codINEP, int codEstado, int codMunicipio, int codPais, int codRegiao,
-      String dependencia, String localizacao, Integer tipo, Double percentageFundamentalTotal) {
+  public IDEB(int ano, int codINEP, int codEstado, int codMunicipio, int codPais, int codRegiao,
+      String dependencia, int tipo, double anosIniciais, double anosFinais, double projecaoAI,
+      double projecaoAF) {
     this.ano = ano;
     this.codINEP = codINEP;
     this.codEstado = codEstado;
@@ -60,12 +64,14 @@ public class TDI {
     this.codPais = codPais;
     this.codRegiao = codRegiao;
     this.dependencia = dependencia;
-    this.localizacao = localizacao;
     this.tipo = tipo;
-    this.percentageFundamentalTotal = percentageFundamentalTotal;
+    this.anosIniciais = anosIniciais;
+    this.anosFinais = anosFinais;
+    this.projecaoAI = projecaoAI;
+    this.projecaoAF = projecaoAF;
   }
 
-  public TDI() {
+  public IDEB() {
 
   }
 
@@ -79,7 +85,7 @@ public class TDI {
   }
 
   /**
-   * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse TDI.
+   * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse IDEB.
    *
    * @return int representando o código INEP.
    */
@@ -88,7 +94,7 @@ public class TDI {
   }
 
   /**
-   * Retorna o código do estado associado com esse TDI.
+   * Retorna o código do estado associado com esse IDEB.
    *
    * @return int representando o estado.
    */
@@ -97,7 +103,7 @@ public class TDI {
   }
 
   /**
-   * Retorna o código da região associada com esse TDI.
+   * Retorna o código da região associada com esse IDEB.
    *
    * @return int representando o estado.
    */
@@ -106,7 +112,7 @@ public class TDI {
   }
 
   /**
-   * Retorna o código do município associada com esse TDI.
+   * Retorna o código do município associada com esse IDEB.
    *
    * @return int representando o estado.
    */
@@ -120,20 +126,48 @@ public class TDI {
    *
    * @return inteiro que representa o tipo.
    */
-  public Integer getTipo() {
+  public int getTipo() {
     return tipo;
   }
 
   /**
-   * Retorna a porcentagem de Distorção idade Serie total do Fundamental.
+   * Retorna a nota do IDEB nos anos Iniciais dessa entidade.
    *
-   * @return double representando essa porcentagem.
+   * @return double que representa a nota.
    */
-  public Double getPercentageFundamentalTotal() {
-    return percentageFundamentalTotal;
+  public double getAnosIniciais() {
+    return anosIniciais;
   }
 
-  public static class TDIKey implements Serializable {
+  /**
+   * Retorna a nota do IDEB nos anos Finais dessa entidade.
+   *
+   * @return double que representa a nota.
+   */
+  public double getAnosFinais() {
+    return anosFinais;
+  }
+
+  /**
+   * Retorna a projeção do IDEB nos anos Iniciais dessa entidade.
+   *
+   * @return double que representa a projeção.
+   */
+  public double getProjecaoAI() {
+    return projecaoAI;
+  }
+
+  /**
+   * Retorna a projeção do IDEB nos anos Finais dessa entidade.
+   *
+   * @return double que representa a projeção.
+   */
+  public double getProjecaoAF() {
+    return projecaoAF;
+  }
+
+
+  public static class IDEBKey implements Serializable {
 
     private int ano;
     private int codINEP;
@@ -142,7 +176,6 @@ public class TDI {
     private int codRegiao;
     private int codMunicipio;
     private String dependencia;
-    private String localizacao;
 
     @Override
     public boolean equals(Object o) {
@@ -152,21 +185,20 @@ public class TDI {
       if (o == null || getClass() != o.getClass()) {
         return false;
       }
-      TDIKey key = (TDIKey) o;
+      IDEB.IDEBKey key = (IDEB.IDEBKey) o;
       return (this.ano == key.ano) &&
           (this.codINEP == key.codINEP) &&
           (this.codEstado == key.codEstado) &&
           (this.codPais == key.codPais) &&
           (this.codRegiao == key.codRegiao) &&
           (this.codMunicipio == key.codMunicipio) &&
-          this.dependencia.equals(key.dependencia) &&
-          this.localizacao.equals(key.localizacao);
+          this.dependencia.equals(key.dependencia);
     }
 
     @Override
     public int hashCode() {
       return Objects.hash(this.ano, this.codINEP, this.codEstado, this.codPais, this.codRegiao,
-          this.codMunicipio, this.dependencia, this.localizacao);
+          this.codMunicipio, this.dependencia);
     }
   }
 

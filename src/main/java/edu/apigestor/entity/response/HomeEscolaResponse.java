@@ -53,14 +53,12 @@ public class HomeEscolaResponse extends AbstractResponse<List<Map<String, Object
     }
 
     List<Map<String, Object>> data = new ArrayList<>();
-    int size = this.schools.size();
 
-    for (int i = 0; i < size; i++) {
+    for (SchoolEntry school : this.schools) {
       Map<String, Object> m = new LinkedHashMap<>();
 
-      m.put("type", HomeEscolaResponse.RESOURCE_TYPE);
-      m.put("id", this.ids.get(i));
-      m.put("attributes", this.schools.get(i));
+      m.put("value", school.codINEP);
+      m.put("label", "%s, %s".formatted(school.name, school.address));
 
       data.add(m);
     }

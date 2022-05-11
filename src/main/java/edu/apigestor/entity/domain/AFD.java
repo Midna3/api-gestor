@@ -59,6 +59,30 @@ public class AFD {
   @Column(name = "AFDFundamentalTotalG5")
   private Double percentageG5;
 
+  public AFD(int codINEP, int codEstado, int codPais, int codMunicipio, int codRegiao, int ano,
+      String dependencia, String localizacao, Integer tipo, Double percentageG1,
+      Double percentageG2,
+      Double percentageG3, Double percentageG4, Double percentageG5) {
+    this.codINEP = codINEP;
+    this.codEstado = codEstado;
+    this.codPais = codPais;
+    this.codMunicipio = codMunicipio;
+    this.codRegiao = codRegiao;
+    this.ano = ano;
+    this.dependencia = dependencia;
+    this.localizacao = localizacao;
+    this.tipo = tipo;
+    this.percentageG1 = percentageG1;
+    this.percentageG2 = percentageG2;
+    this.percentageG3 = percentageG3;
+    this.percentageG4 = percentageG4;
+    this.percentageG5 = percentageG5;
+  }
+
+  public AFD() {
+
+  }
+
   /**
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse AFD.
    *
