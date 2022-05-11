@@ -47,9 +47,9 @@ public class ICG {
   @Column(name = "localizacao")
   private String localizacao; // Não precisamos de get/set, apenas serve para chave primária.
   @Column(name = "ICGNivelMedio")
-  private double valorMedio;
+  private Double valorMedio;
   @Column(name = "tipo")
-  private int tipo;
+  private Integer tipo;
 
   /**
    * Retorna o código INEP da escola associada (se possuir, 0 caso contrário) com esse ICG.
@@ -93,7 +93,7 @@ public class ICG {
    *
    * @return inteiro que representa o tipo.
    */
-  public int tipo() {
+  public Integer tipo() {
     return this.tipo;
   }
 
@@ -102,7 +102,7 @@ public class ICG {
    *
    * @return double representando esse valor.
    */
-  public double valorMedio() {
+  public Double valorMedio() {
     return this.valorMedio;
   }
 
