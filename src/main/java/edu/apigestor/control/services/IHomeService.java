@@ -1,5 +1,8 @@
 package edu.apigestor.control.services;
 
+import edu.apigestor.entity.response.HomeDadosNacionalResponse;
+import org.springframework.http.ResponseEntity;
+
 /**
  * Essa interface define os serviços que podem ser realizados pela home:
  *
@@ -11,5 +14,14 @@ package edu.apigestor.control.services;
  * </ul>
  */
 public interface IHomeService {
+
+  /**
+   * Retorna dados da educação para um país em um dado ano.
+   *
+   * @param country país.
+   * @param year    ano dos dados.
+   * @return uma resposta contendo esses dados ou uma informação de erro.
+   */
+  ResponseEntity<HomeDadosNacionalResponse> dataCountry(String country, int year);
 
 }

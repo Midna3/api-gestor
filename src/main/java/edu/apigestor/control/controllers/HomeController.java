@@ -36,7 +36,7 @@ public class HomeController {
   public ResponseEntity<HomeDadosNacionalResponse> dataCountry(
       @PathVariable("country") String country,
       @RequestParam(name = "year", defaultValue = "2019") int year) {
-    return null;
+    return this.homeService.dataCountry(country, year);
   }
 
   @GetMapping(path = "/state/{state}")

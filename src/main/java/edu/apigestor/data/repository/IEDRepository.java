@@ -2,6 +2,7 @@ package edu.apigestor.data.repository;
 
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IED.IEDKey;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -12,5 +13,14 @@ import org.springframework.data.repository.Repository;
  * @version 0.1
  */
 public interface IEDRepository extends Repository<IED, IEDKey> {
+
+  @Query("SELECT ied FROM IED ied WHERE "
+      + "ied.codPais = :codPais AND "
+      + "ied.ano = :year AND "
+      + "ied.tipo = 0 AND "
+      + "ied.localizacao = 'Total' AND "
+      + "ied.dependencia = 'Total' AND "
+      + "ied.tipo = 0")
+  IED getIEDForCountry(int codPais, int year);
 
 }
