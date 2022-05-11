@@ -102,7 +102,9 @@ public class Home implements IHomeService {
         .icg(meanICG, CategoryMapper.getICGCategory(meanICG))
         .afd(meanAFD, CategoryMapper.getAFDCategory(meanAFD))
         .idebFinais(null)
-        .idebIniciais(null);
+        .idebFinaisProjection(null)
+        .idebIniciais(null)
+        .idebIniciaisProjection(null);
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
