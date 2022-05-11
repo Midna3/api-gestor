@@ -104,6 +104,28 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
     return this;
   }
 
+  /**
+   * Adiciona o Ideb dos anos iniciais.
+   *
+   * @param idebIniciais IDEB médio.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse idebIniciais(Double idebIniciais) {
+    this.data.addMeanIdebInicial(idebIniciais);
+    return this;
+  }
+
+  /**
+   * Adiciona o Ideb dos anos finais.
+   *
+   * @param idebFinais IDEB médio.
+   * @return essa mesma resposta, permitindo <i>method chaining</i>.
+   */
+  public HomeDadosResponse idebFinais(Double idebFinais) {
+    this.data.addMeanIdebFinal(idebFinais);
+    return this;
+  }
+
   @Override
   protected void handleError() {
     this.hasError = true;
@@ -150,6 +172,10 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
     private Map<String, Object> icg = new HashMap<>();
     @JsonProperty("afd")
     private Map<String, Object> afd = new HashMap<>();
+    @JsonProperty("idebIniciais")
+    private Map<String, Object> idebIniciais = new HashMap<>();
+    @JsonProperty("idebFinais")
+    private Map<String, Object> idebFinais = new HashMap<>();
     @JsonProperty("year")
     private int year; // Ano dos dados
 
@@ -204,6 +230,24 @@ public abstract class HomeDadosResponse extends AbstractResponse<Map<String, Obj
      */
     private void addMeanTDI(Double meanTDI) {
       this.tdi.put("mean", meanTDI);
+    }
+
+    /**
+     * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param meanIdebInicial Ideb médio dos anos iniciais.
+     */
+    private void addMeanIdebInicial(Double meanIdebInicial) {
+      this.idebIniciais.put("mean", meanIdebInicial);
+    }
+
+    /**
+     * Esse método adiciona uma média do IDEB dos anos iniciais nos dados da resposta.
+     *
+     * @param meanIdebFinal Ideb médio dos anos finais.
+     */
+    private void addMeanIdebFinal(Double meanIdebFinal) {
+      this.idebFinais.put("mean", meanIdebFinal);
     }
   }
 }
