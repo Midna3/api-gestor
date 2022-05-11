@@ -2,6 +2,7 @@ package edu.apigestor.data.repository;
 
 import edu.apigestor.entity.domain.TDI;
 import edu.apigestor.entity.domain.TDI.TDIKey;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -12,5 +13,14 @@ import org.springframework.data.repository.Repository;
  * @version 0.1
  */
 public interface TDIRepository extends Repository<TDI, TDIKey> {
+
+  @Query("SELECT tdi FROM TDI tdi WHERE "
+      + "tdi.codPais = :codPais AND "
+      + "tdi.ano = :year AND "
+      + "tdi.tipo = 0 AND "
+      + "tdi.localizacao = 'Total' AND "
+      + "tdi.dependencia = 'Total' AND "
+      + "tdi.tipo = 0")
+  TDI getTDIForCountry(int codPais, int year);
 
 }

@@ -13,6 +13,7 @@ import edu.apigestor.data.repository.IRDRepository;
 import edu.apigestor.data.repository.TDIRepository;
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
+import edu.apigestor.entity.domain.TDI;
 import edu.apigestor.entity.response.HomeDadosNacionalResponse;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,10 +78,14 @@ public class Home implements IHomeService {
     IRD ird = this.irdRepository.getIRDForCountry(code, year);
     double meanIRD = ird.getMediaTotal();
 
+    TDI tdi = this.tdiRepository.getTDIForCountry(code, year);
+    double meanTDI = tdi.getPercentageFundamentalTotal();
+
     response.country(countryName)
         .id(responseID)
         .ied(meanIED, CategoryMapper.getIEDCategory(meanIED))
-        .ird(meanIRD, CategoryMapper.getIRDCategory(meanIRD));
+        .ird(meanIRD, CategoryMapper.getIRDCategory(meanIRD))
+        .tdi(meanTDI);
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
