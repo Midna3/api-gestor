@@ -47,9 +47,9 @@ public class IRD {
     @Column(name = "localizacao") // Não precisamos de get/set, apenas serve para chave primária.
     private String localizacao;
     @Column(name = "tipo")
-    private int tipo;
+    private Integer tipo;
     @Column(name = "IRDMediaTotal")
-    private double mediaTotal;
+    private Double mediaTotal;
 
     /**
      * Retorna o ano dessa entidade.
@@ -102,7 +102,7 @@ public class IRD {
      *
      * @return inteiro que representa o tipo.
      */
-    public int getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
@@ -111,7 +111,7 @@ public class IRD {
      *
      * @return double representando essa média.
      */
-    public double getMediaTotal() {
+    public Double getMediaTotal() {
         return mediaTotal;
     }
 
