@@ -2,6 +2,7 @@ package edu.apigestor.data.repository;
 
 import edu.apigestor.entity.domain.AFD;
 import edu.apigestor.entity.domain.AFD.AFDKey;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -12,5 +13,14 @@ import org.springframework.data.repository.Repository;
  * @version 0.1
  */
 public interface AFDRepository extends Repository<AFD, AFDKey> {
+
+  @Query("SELECT afd FROM AFD afd WHERE "
+      + "afd.codPais = :codPais AND "
+      + "afd.ano = :year AND "
+      + "afd.tipo = 0 AND "
+      + "afd.localizacao = 'Total' AND "
+      + "afd.dependencia = 'Total' AND "
+      + "afd.tipo = 0")
+  AFD getAFDForCountry(int codPais, int year);
 
 }

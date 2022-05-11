@@ -11,6 +11,7 @@ import edu.apigestor.data.repository.IDEBRepository;
 import edu.apigestor.data.repository.IEDRepository;
 import edu.apigestor.data.repository.IRDRepository;
 import edu.apigestor.data.repository.TDIRepository;
+import edu.apigestor.entity.domain.AFD;
 import edu.apigestor.entity.domain.ICG;
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
@@ -85,13 +86,21 @@ public class Home implements IHomeService {
     ICG icg = this.icgRepository.getICGForCountry(code, year);
     double meanICG = icg.valorMedio();
 
+    AFD afd = this.afdRepository.getAFDForCountry(code, year);
+    double meanAFD = (1 * afd.percentageG1() +
+        2 * afd.percentageG2() +
+        3 * afd.percentageG3() +
+        4 * afd.percentageG4() +
+        5 * afd.percentageG5()) / 100;
+
     response.country(countryName)
         .ano(year)
         .id(responseID)
         .ied(meanIED, CategoryMapper.getIEDCategory(meanIED))
         .ird(meanIRD, CategoryMapper.getIRDCategory(meanIRD))
         .tdi(meanTDI)
-        .icg(meanICG, CategoryMapper.getICGCategory(meanICG));
+        .icg(meanICG, CategoryMapper.getICGCategory(meanICG))
+        .afd(meanAFD, CategoryMapper.getAFDCategory(meanAFD));
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
