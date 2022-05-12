@@ -105,6 +105,20 @@ public class Home implements IHomeService {
 
   @Override
   public ResponseEntity<HomeEscolaResponse> listSchool(String name, int limit) {
-    return null;
+    HomeEscolaResponse response = new HomeEscolaResponse();
+
+    response.addEntry("Default",
+        0,
+        "State, City",
+        this.count.getAndIncrement());
+
+    // JPQL: SELECT s FROM Censo s WHERE lower(s.nomeEscola) LIKE '%:name%' OR
+    //                                   lower(s.nomeEscola) LIKE '%substring(:name, i, k)%' OR
+    //                                   lower(s.nomeEscola) LIKE '%substring(:name, j, l)%' OR
+    //                                   lower(s.nomeEscola) ...
+    // Outra opção é usar Full-Text Search com o MySQL, todavia é necessário utilizar
+    //  indices FULLTEXT. Talvez essa solução fica para uma próxima versão.
+
+    return ResponseEntity.ok(response);
   }
 }
