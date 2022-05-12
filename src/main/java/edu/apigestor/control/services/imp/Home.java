@@ -7,6 +7,7 @@ import edu.apigestor.control.services.IHomeService;
 import edu.apigestor.control.utils.AvailableYears;
 import edu.apigestor.control.utils.MeanUtils;
 import edu.apigestor.control.utils.MeanUtils.MeanCategory;
+import edu.apigestor.control.utils.SortUtils;
 import edu.apigestor.data.repository.AFDRepository;
 import edu.apigestor.data.repository.ICGRepository;
 import edu.apigestor.data.repository.IDEBRepository;
@@ -20,6 +21,8 @@ import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.TDI;
 import edu.apigestor.entity.response.HomeDadosNacionalResponse;
 import edu.apigestor.entity.response.HomeEscolaResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -107,17 +110,25 @@ public class Home implements IHomeService {
   public ResponseEntity<HomeEscolaResponse> listSchool(String name, int limit) {
     HomeEscolaResponse response = new HomeEscolaResponse();
 
-    response.addEntry("Default",
-        0,
-        "State, City",
-        this.count.getAndIncrement());
-
     // JPQL: SELECT s FROM Censo s WHERE lower(s.nomeEscola) LIKE '%:name%' OR
     //                                   lower(s.nomeEscola) LIKE '%substring(:name, i, k)%' OR
     //                                   lower(s.nomeEscola) LIKE '%substring(:name, j, l)%' OR
     //                                   lower(s.nomeEscola) ...
     // Outra opção é usar Full-Text Search com o MySQL, todavia é necessário utilizar
     //  indices FULLTEXT. Talvez essa solução fica para uma próxima versão.
+
+    // O retorno é uma lista de Censo: List<Censo> result
+    // Podemos dar um sort usando streams:
+
+    List<Object> result = SortUtils.sortSchoolList(new ArrayList<>(), name);
+    int size = result.size();
+    int lastIndex = Math.min(limit, size);
+    result = result.subList(0, lastIndex);
+
+    response.addEntry("Default",
+        0,
+        "State, City",
+        this.count.getAndIncrement());
 
     return ResponseEntity.ok(response);
   }
