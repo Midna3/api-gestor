@@ -28,8 +28,8 @@ public interface IHomeService {
   /**
    * Retorna uma lista de escolas com nome similar ao digitado.
    *
-   * @param name nome da escola.
-   * @param limit  limite da quantidade de escolas.
+   * @param name  nome da escola.
+   * @param limit limite da quantidade de escolas.
    * @return uma resposta contendo esses dados ou uma informação de erro.
    */
   ResponseEntity<HomeEscolaResponse> listSchool(String name, int limit);

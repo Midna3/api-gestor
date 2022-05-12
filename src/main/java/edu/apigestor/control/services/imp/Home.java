@@ -7,7 +7,6 @@ import edu.apigestor.control.services.IHomeService;
 import edu.apigestor.control.utils.AvailableYears;
 import edu.apigestor.control.utils.MeanUtils;
 import edu.apigestor.control.utils.MeanUtils.MeanCategory;
-import edu.apigestor.control.utils.MeanUtils.MeanEntry;
 import edu.apigestor.data.repository.AFDRepository;
 import edu.apigestor.data.repository.ICGRepository;
 import edu.apigestor.data.repository.IDEBRepository;
