@@ -100,6 +100,6 @@ public class Home implements IHomeService {
         .idebIniciais(null)
         .idebIniciaisProjection(null);
 
-    return new ResponseEntity<>(response, HttpStatus.OK);
+    return ResponseEntity.ok(response);
   }
 }
