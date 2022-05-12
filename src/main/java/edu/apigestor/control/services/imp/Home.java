@@ -20,6 +20,7 @@ import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.TDI;
 import edu.apigestor.entity.response.HomeDadosNacionalResponse;
+import edu.apigestor.entity.response.HomeEscolaResponse;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -101,5 +102,10 @@ public class Home implements IHomeService {
         .idebIniciaisProjection(null);
 
     return new ResponseEntity<>(response, HttpStatus.OK);
+  }
+
+  @Override
+  public ResponseEntity<HomeEscolaResponse> listSchool(String name, int limit) {
+    return null;
   }
 }
