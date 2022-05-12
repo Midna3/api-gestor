@@ -1,6 +1,7 @@
 package edu.apigestor.control.services.imp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
@@ -100,7 +101,7 @@ public class HomeTests {
     assertEquals(HttpStatus.OK, response.getStatusCode());
     assertTrue(json.contains("\"data\":"));
     assertTrue(json.contains("\"type\":\"eduData\""));
-    assertTrue(json.contains("\"id\":0"));
+    assertTrue(json.contains("\"id\":"));
     assertTrue(json.contains("\"attributes\":"));
 
     assertEquals(1.0, root.findValue("ied").findValue("mean").asDouble());
@@ -109,5 +110,40 @@ public class HomeTests {
     assertEquals(1.5, root.findValue("ird").findValue("mean").asDouble());
     assertEquals(6.0, root.findValue("icg").findValue("mean").asDouble());
     assertEquals(3.0, root.findValue("afd").findValue("mean").asDouble());
+  }
+
+  @Test
+  public void dataCountryEmpty() throws JsonProcessingException {
+    when(this.iedRepository.getIEDForCountry(anyInt(), anyInt()))
+        .thenReturn(new IED());
+
+    when(this.irdRepository.getIRDForCountry(anyInt(), anyInt()))
+        .thenReturn(new IRD());
+
+    when(this.tdiRepository.getTDIForCountry(anyInt(), anyInt()))
+        .thenReturn(new TDI());
+
+    when(this.icgRepository.getICGForCountry(anyInt(), anyInt()))
+        .thenReturn(new ICG());
+
+    when(this.afdRepository.getAFDForCountry(anyInt(), anyInt()))
+        .thenReturn(new AFD());
+
+    ResponseEntity<HomeDadosNacionalResponse> response = home.dataCountry("Brasil", 2017);
+    String json = this.mapper.writeValueAsString(response.getBody());
+    ObjectNode root = (ObjectNode) this.mapper.readTree(json);
+
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertTrue(json.contains("\"data\":"));
+    assertTrue(json.contains("\"type\":\"eduData\""));
+    assertTrue(json.contains("\"id\":"));
+    assertTrue(json.contains("\"attributes\":"));
+
+    assertTrue(root.findValue("ied").findValue("mean").isNull());
+    assertTrue(root.findValue("ird").findValue("mean").isNull());
+    assertTrue(root.findValue("tdi").findValue("mean").isNull());
+    assertTrue(root.findValue("ird").findValue("mean").isNull());
+    assertTrue(root.findValue("icg").findValue("mean").isNull());
+    assertTrue(root.findValue("afd").findValue("mean").isNull());
   }
 }
