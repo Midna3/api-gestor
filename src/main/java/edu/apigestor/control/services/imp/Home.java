@@ -20,8 +20,6 @@ import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.TDI;
 import edu.apigestor.entity.response.HomeDadosNacionalResponse;
 import edu.apigestor.entity.response.HomeEscolaResponse;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
