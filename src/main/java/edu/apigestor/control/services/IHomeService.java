@@ -1,6 +1,8 @@
 package edu.apigestor.control.services;
 
 import edu.apigestor.entity.response.HomeDadosNacionalResponse;
+import edu.apigestor.entity.response.HomeDadosRegionalResponse;
+
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -24,4 +26,5 @@ public interface IHomeService {
    */
   ResponseEntity<HomeDadosNacionalResponse> dataCountry(String country, int year);
 
+  ResponseEntity<HomeDadosRegionalResponse> dataRegion(String country, int year);
 }
