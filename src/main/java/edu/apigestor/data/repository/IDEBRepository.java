@@ -18,8 +18,7 @@ public interface IDEBRepository extends Repository<IDEB, IDEBKey> {
             + "ideb.codPais = :codPais AND "
             + "ideb.ano = :year AND "
             + "ideb.tipo = 0 AND "
-            + "ideb.dependencia = 'Total' AND "
-            + "ideb.tipo = 0")
+            + "ideb.dependencia = 'Total' ")
     IDEB getIDEBForCountry(int codPais, int year);
 
 }
