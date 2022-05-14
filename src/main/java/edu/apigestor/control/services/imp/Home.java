@@ -16,6 +16,7 @@ import edu.apigestor.data.repository.IRDRepository;
 import edu.apigestor.data.repository.TDIRepository;
 import edu.apigestor.entity.domain.AFD;
 import edu.apigestor.entity.domain.ICG;
+import edu.apigestor.entity.domain.IDEB;
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.TDI;
@@ -71,6 +72,9 @@ public class Home implements IHomeService {
           "Country '%s' doesn't exist.".formatted(country));
       return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+
+    IDEB ideb = this.idebRepository.getIDEBForCountry(code, year);
+    // MeanCategory meanIDEB = MeanUtils.meanIDEB(ideb, CategoryMapper::getIDEBCategory);
 
     IED ied = this.iedRepository.getIEDForCountry(code, year);
     MeanCategory meanIED = MeanUtils.meanIED(ied, CategoryMapper::getIEDCategory);
