@@ -63,6 +63,14 @@ public class HomeTests {
         Integer.toString(HttpStatus.BAD_REQUEST.value())));
   }
 
+  private static void assertDataStructure(ObjectNode root) {
+    assertTrue(root.findValue("data").isContainerNode());
+    assertTrue(root.findValue("type").isTextual());
+    assertTrue(root.findValue("id").isNumber());
+    assertTrue(root.findValue("attributes").isContainerNode());
+    assertTrue(root.findValue("year").isNumber());
+  }
+
   @ParameterizedTest
   @CsvSource(value = {
       "2014",
@@ -131,15 +139,10 @@ public class HomeTests {
             20.0, 20.0, 20.0, 20.0, 20.0));
 
     ResponseEntity<HomeDadosNacionalResponse> response = home.dataCountry("Brazil", 2020);
-    String json = this.mapper.writeValueAsString(response.getBody());
-    ObjectNode root = (ObjectNode) this.mapper.readTree(json);
+    ObjectNode root = this.getRoot(this.toJson(response.getBody()));
+    HomeTests.assertDataStructure(root);
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertTrue(json.contains("\"data\":"));
-    assertTrue(json.contains("\"type\":\"eduData\""));
-    assertTrue(json.contains("\"id\":"));
-    assertTrue(json.contains("\"attributes\":"));
-
     assertEquals(1.0, root.findValue("ied").findValue("mean").asDouble());
     assertEquals(1.5, root.findValue("ird").findValue("mean").asDouble());
     assertEquals(88.0, root.findValue("tdi").findValue("mean").asDouble());
