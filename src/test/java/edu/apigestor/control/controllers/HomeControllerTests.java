@@ -38,14 +38,41 @@ public class HomeControllerTests {
     String getURL = (year == null) ? "/home/country/%s" : "/home/country/%s?year=%d";
     getURL = getURL.formatted(country, year);
 
-    this.mockMvc.perform(get(getURL))
+    this.dataInputTest(country, year, getURL, Level.COUNTRY);
+  }
+
+  @ParameterizedTest
+  @CsvSource(value = {
+      "Centro-Oeste, 2015",
+      "sudeste, 2018",
+      "SUL, 2019",
+      "nordeste, 2017",
+      "CO, 2020",
+      "NORTE, null"},
+      nullValues = "null")
+  public void dataRegionInputTest(String region, Integer year) throws Exception {
+    String getURL = (year == null) ? "/home/region/%s" : "/home/region/%s?year=%d";
+    getURL = getURL.formatted(region, year);
+
+    this.dataInputTest(region, year, getURL, Level.REGION);
+  }
+
+  private void dataInputTest(String target, Integer year,
+      String getMapping, Level level) throws Exception {
+    this.mockMvc.perform(get(getMapping))
         .andDo(print());
 
     ArgumentCaptor<String> stringCaptor = ArgumentCaptor.forClass(String.class);
     ArgumentCaptor<Integer> intCaptor = ArgumentCaptor.forClass(Integer.class);
-    verify(this.homeService).dataCountry(stringCaptor.capture(), intCaptor.capture());
 
-    assertEquals(country, stringCaptor.getValue());
+    switch (level) {
+      case COUNTRY -> verify(this.homeService).dataCountry(stringCaptor.capture(),
+          intCaptor.capture());
+      case REGION -> verify(this.homeService).dataRegion(stringCaptor.capture(),
+          intCaptor.capture());
+    }
+
+    assertEquals(target, stringCaptor.getValue());
     if (year == null) {
       assertNotNull(intCaptor.getValue());
     } else {
@@ -53,4 +80,7 @@ public class HomeControllerTests {
     }
   }
 
+  private enum Level {
+    COUNTRY, REGION
+  }
 }
