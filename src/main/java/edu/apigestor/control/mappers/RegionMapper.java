@@ -19,25 +19,19 @@ public final class RegionMapper {
    * nome padrão). Caso não exista, retorna um objeto com nome null e código -1.
    *
    * @param region nome da região.
-   * @return {@link regionID} com o nome padrão da região e seu código no BD.
+   * @return {@link RegionID} com o nome padrão da região e seu código no BD.
    */
   public static RegionID getRegion(String region) {
     String lower = region.toLowerCase(Locale.ROOT);
 
-    switch(lower){
-      case "norte": case "n":
-        return new RegionID("n", 1);
-      case "nordeste": case "ne":
-        return new RegionID("ne", 2);
-      case "sudeste": case "se":
-        return new RegionID("se", 3);
-      case "sul": case "s":
-        return new RegionID("s", 4);
-      case "co":
-        return new RegionID("co", 5);
-      default:
-        return new RegionID(null, -1);
-    }
+    return switch (lower) {
+      case "norte", "n" -> new RegionID("n", 1);
+      case "nordeste", "ne" -> new RegionID("ne", 2);
+      case "sudeste", "se" -> new RegionID("se", 3);
+      case "sul", "s" -> new RegionID("s", 4);
+      case "centro-oeste", "co" -> new RegionID("co", 5);
+      default -> new RegionID(null, -1);
+    };
   }
 
   /**
