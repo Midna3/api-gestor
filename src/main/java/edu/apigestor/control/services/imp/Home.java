@@ -82,9 +82,6 @@ public class Home implements IHomeService {
       return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    IDEB ideb = this.idebRepository.getIDEBForCountry(code, year);
-    // MeanCategory meanIDEB = MeanUtils.meanIDEB(ideb, CategoryMapper::getIDEBCategory);
-
     IED ied = this.iedRepository.getIEDForCountry(code, year);
     MeanCategory meanIED = MeanUtils.meanIED(ied, CategoryMapper::getIEDCategory);
 
@@ -113,6 +110,13 @@ public class Home implements IHomeService {
         .idebIniciais(null)
         .idebIniciaisProjection(null);
 
+    if(AvailableYears.isIdebAvailable(year)){
+      IDEB ideb = this.idebRepository.getIDEBForCountry(code, year);
+      response.idebFinais(ideb.getAnosFinais())
+          .idebFinaisProjection(ideb.getProjecaoAF())
+          .idebIniciais(ideb.getAnosIniciais())
+          .idebIniciaisProjection(ideb.getProjecaoAI());
+    }
     return ResponseEntity.ok(response);
   }
 
