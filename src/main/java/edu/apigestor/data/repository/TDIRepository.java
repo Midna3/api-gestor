@@ -25,7 +25,7 @@ public interface TDIRepository extends Repository<TDI, TDIKey> {
   @Query("SELECT tdi FROM TDI tdi WHERE "
   + "tdi.codRegiao = :codRegiao AND "
   + "tdi.ano = :year AND "
-  + "tdi.tipo = 0 AND "
+  + "tdi.tipo = 1 AND "
   + "tdi.localizacao = 'Total' AND "
   + "tdi.dependencia = 'Total'")
 TDI getTDIForRegion(int codRegiao, int year);
