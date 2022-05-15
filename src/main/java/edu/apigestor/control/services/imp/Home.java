@@ -19,6 +19,7 @@ import edu.apigestor.data.repository.TDIRepository;
 import edu.apigestor.entity.domain.AFD;
 import edu.apigestor.entity.domain.Censo;
 import edu.apigestor.entity.domain.ICG;
+import edu.apigestor.entity.domain.IDEB;
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.TDI;
@@ -147,6 +148,8 @@ public class Home implements IHomeService {
     ICG icg = this.icgRepository.getICGForRegion(code, year);
     MeanCategory meanICG = MeanCategory.of(icg.valorMedio(), CategoryMapper::getICGCategory);
 
+    IDEB ideb = this.idebRepository.getIDEBForRegion(code, year);
+    
     AFD afd = this.afdRepository.getAFDForRegion(code, year);
     MeanCategory meanAFD = MeanUtils.meanAFD(afd, CategoryMapper::getAFDCategory);
 
@@ -158,10 +161,10 @@ public class Home implements IHomeService {
         .tdi(meanTDI)
         .icg(meanICG.mean(), meanICG.category())
         .afd(meanAFD.mean(), meanAFD.category())
-        .idebFinais(null)
-        .idebFinaisProjection(null)
-        .idebIniciais(null)
-        .idebIniciaisProjection(null);
+        .idebFinais(ideb.getAnosFinais())
+        .idebFinaisProjection(ideb.getProjecaoAF())
+        .idebIniciais(ideb.getAnosIniciais())
+        .idebIniciaisProjection(ideb.getProjecaoAI());
 
     return ResponseEntity.ok(response);
   }
