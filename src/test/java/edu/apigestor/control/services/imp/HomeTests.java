@@ -169,15 +169,40 @@ public class HomeTests {
         .thenReturn(new AFD());
 
     ResponseEntity<HomeDadosNacionalResponse> response = home.dataCountry("Brasil", 2017);
-    String json = this.mapper.writeValueAsString(response.getBody());
-    ObjectNode root = (ObjectNode) this.mapper.readTree(json);
+    ObjectNode root = this.getRoot(this.toJson(response.getBody()));
+    HomeTests.assertDataStructure(root);
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertTrue(json.contains("\"data\":"));
-    assertTrue(json.contains("\"type\":\"eduData\""));
-    assertTrue(json.contains("\"id\":"));
-    assertTrue(json.contains("\"attributes\":"));
+    assertTrue(root.findValue("ied").findValue("mean").isNull());
+    assertTrue(root.findValue("ird").findValue("mean").isNull());
+    assertTrue(root.findValue("tdi").findValue("mean").isNull());
+    assertTrue(root.findValue("ird").findValue("mean").isNull());
+    assertTrue(root.findValue("icg").findValue("mean").isNull());
+    assertTrue(root.findValue("afd").findValue("mean").isNull());
+  }
 
+  @Test
+  public void dataRegionEmpty() throws JsonProcessingException {
+    when(this.iedRepository.getIEDForRegion(anyInt(), anyInt()))
+        .thenReturn(new IED());
+
+    when(this.irdRepository.getIRDForRegion(anyInt(), anyInt()))
+        .thenReturn(new IRD());
+
+    when(this.tdiRepository.getTDIForRegion(anyInt(), anyInt()))
+        .thenReturn(new TDI());
+
+    when(this.icgRepository.getICGForRegion(anyInt(), anyInt()))
+        .thenReturn(new ICG());
+
+    when(this.afdRepository.getAFDForRegion(anyInt(), anyInt()))
+        .thenReturn(new AFD());
+
+    ResponseEntity<HomeDadosRegionalResponse> response = home.dataRegion("NORDESTE", 2017);
+    ObjectNode root = this.getRoot(this.toJson(response.getBody()));
+    HomeTests.assertDataStructure(root);
+
+    assertEquals(HttpStatus.OK, response.getStatusCode());
     assertTrue(root.findValue("ied").findValue("mean").isNull());
     assertTrue(root.findValue("ird").findValue("mean").isNull());
     assertTrue(root.findValue("tdi").findValue("mean").isNull());
