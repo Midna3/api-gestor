@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @IdClass(IDEB.IDEBKey.class)
-@Table(name = "ideb_corrigido")
+@Table(name = "ideb")
 public class IDEB {
 
   @Id
@@ -46,13 +46,13 @@ public class IDEB {
   @Column(name = "tipo")
   private int tipo;
   @Column(name = "anosIniciais")
-  private double anosIniciais;
+  private Double anosIniciais;
   @Column(name = "anosFinais")
-  private double anosFinais;
+  private Double anosFinais;
   @Column(name = "projecaoAI")
-  private double projecaoAI;
+  private Double projecaoAI;
   @Column(name = "projecaoAF")
-  private double projecaoAF;
+  private Double projecaoAF;
 
   public IDEB(int ano, int codINEP, int codEstado, int codMunicipio, int codPais, int codRegiao,
       String dependencia, int tipo, double anosIniciais, double anosFinais, double projecaoAI,
@@ -135,7 +135,7 @@ public class IDEB {
    *
    * @return double que representa a nota.
    */
-  public double getAnosIniciais() {
+  public Double getAnosIniciais() {
     return anosIniciais;
   }
 
@@ -144,7 +144,7 @@ public class IDEB {
    *
    * @return double que representa a nota.
    */
-  public double getAnosFinais() {
+  public Double getAnosFinais() {
     return anosFinais;
   }
 
@@ -153,7 +153,7 @@ public class IDEB {
    *
    * @return double que representa a projeção.
    */
-  public double getProjecaoAI() {
+  public Double getProjecaoAI() {
     return projecaoAI;
   }
 
@@ -162,7 +162,7 @@ public class IDEB {
    *
    * @return double que representa a projeção.
    */
-  public double getProjecaoAF() {
+  public Double getProjecaoAF() {
     return projecaoAF;
   }
 
