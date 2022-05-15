@@ -210,6 +210,9 @@ public class HomeTests {
     when(this.afdRepository.getAFDForCountry(anyInt(), anyInt()))
         .thenReturn(new AFD());
 
+    when(this.idebRepository.getIDEBForCountry(anyInt(), anyInt()))
+        .thenReturn(new IDEB());
+
     ResponseEntity<HomeDadosNacionalResponse> response = home.dataCountry("Brasil", 2017);
     ObjectNode root = this.getRoot(this.toJson(response.getBody()));
     HomeTests.assertDataStructure(root);

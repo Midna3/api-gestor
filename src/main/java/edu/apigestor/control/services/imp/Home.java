@@ -110,6 +110,13 @@ public class Home implements IHomeService {
         .idebIniciais(null)
         .idebIniciaisProjection(null);
 
+    if(AvailableYears.isIdebAvailable(year)){
+      IDEB ideb = this.idebRepository.getIDEBForCountry(code, year);
+      response.idebFinais(ideb.getAnosFinais())
+          .idebFinaisProjection(ideb.getProjecaoAF())
+          .idebIniciais(ideb.getAnosIniciais())
+          .idebIniciaisProjection(ideb.getProjecaoAI());
+    }
     return ResponseEntity.ok(response);
   }
 

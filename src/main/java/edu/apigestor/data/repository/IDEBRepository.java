@@ -1,4 +1,5 @@
 package edu.apigestor.data.repository;
+
 import edu.apigestor.entity.domain.IDEB;
 import edu.apigestor.entity.domain.IDEB.IDEBKey;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,14 @@ import org.springframework.data.repository.Repository;
  * @version 0.1
  */
 public interface IDEBRepository extends Repository<IDEB, IDEBKey> {
+
+  @Query("SELECT ideb FROM IDEB ideb WHERE "
+      + "ideb.codPais = :codPais AND "
+      + "ideb.ano = :year AND "
+      + "ideb.tipo = 0 AND "
+      + "ideb.dependencia = 'Total' ")
+  IDEB getIDEBForCountry(int codPais, int year);
+
   @Query("SELECT ideb FROM IDEB ideb WHERE "
       + "ideb.codRegiao = :codRegiao AND "
       + "ideb.ano = :year AND "
