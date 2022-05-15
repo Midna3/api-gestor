@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import edu.apigestor.data.repository.AFDRepository;
+import edu.apigestor.data.repository.CensoRepository;
 import edu.apigestor.data.repository.ICGRepository;
 import edu.apigestor.data.repository.IDEBRepository;
 import edu.apigestor.data.repository.IEDRepository;
@@ -50,6 +51,8 @@ public class HomeTests {
   private AFDRepository afdRepository;
   @Mock
   private IDEBRepository idebRepository;
+  @Mock
+  private CensoRepository censoRepository;
 
   @InjectMocks
   private Home home;

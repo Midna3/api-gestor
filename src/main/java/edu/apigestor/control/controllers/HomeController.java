@@ -47,7 +47,7 @@ public class HomeController {
   public ResponseEntity<HomeEscolaResponse> listSchools(
       @PathVariable("schoolName") String schoolName,
       @RequestParam(value = "limit", defaultValue = "10") int limit) {
-    return null;
+    return this.homeService.listSchool(schoolName, limit);
   }
 
 }
