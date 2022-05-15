@@ -152,6 +152,44 @@ public class HomeTests {
   }
 
   @Test
+  public void dataRegionFull() throws JsonProcessingException {
+    when(this.iedRepository.getIEDForRegion(anyInt(), anyInt()))
+        .thenReturn(new IED(2020, 0, 0, 0, 999, 1,
+            "Total", "Total", 1,
+            0.0, 100.0, 0.0, 0.0, 0.0,
+            0.0));
+
+    when(this.irdRepository.getIRDForRegion(anyInt(), anyInt()))
+        .thenReturn(new IRD(2020, 0, 0, 0, 999, 1,
+            "Total", "Total", 1, 2.5));
+
+    when(this.tdiRepository.getTDIForRegion(anyInt(), anyInt()))
+        .thenReturn(new TDI(2020, 0, 0, 0, 999, 1,
+            "Total", "Total", 1, 66.54));
+
+    when(this.icgRepository.getICGForRegion(anyInt(), anyInt()))
+        .thenReturn(new ICG(2020, 0, 0, 999, 0, 1,
+            "Total", "Total", 5.0, 1));
+
+    when(this.afdRepository.getAFDForRegion(anyInt(), anyInt()))
+        .thenReturn(new AFD(0, 0, 999, 0, 1, 2020,
+            "Total", "Total", 1,
+            0.0, 0.0, 0.0, 0.0, 100.0));
+
+    ResponseEntity<HomeDadosRegionalResponse> response = home.dataRegion("NORDESTE", 2020);
+    ObjectNode root = this.getRoot(this.toJson(response.getBody()));
+    HomeTests.assertDataStructure(root);
+
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(2.0, root.findValue("ied").findValue("mean").asDouble());
+    assertEquals(2.5, root.findValue("ird").findValue("mean").asDouble());
+    assertEquals(66.54, root.findValue("tdi").findValue("mean").asDouble());
+    assertEquals(2.5, root.findValue("ird").findValue("mean").asDouble());
+    assertEquals(5.0, root.findValue("icg").findValue("mean").asDouble());
+    assertEquals(5.0, root.findValue("afd").findValue("mean").asDouble());
+  }
+
+  @Test
   public void dataCountryEmpty() throws JsonProcessingException {
     when(this.iedRepository.getIEDForCountry(anyInt(), anyInt()))
         .thenReturn(new IED());
