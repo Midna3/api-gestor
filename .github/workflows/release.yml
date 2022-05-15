@@ -1,0 +1,79 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout to branch
+      uses: actions/checkout@v3
+
+    - name: Get tag from commit message
+      run: |
+        str="${{ github.event.head_commit.message }}"
+        str=$(echo "$str" | tail -n1)
+        str=$(echo "$str" | sed 's/\s+//g')
+        strN=$(echo "$str" | sed 's/v//g')
+        echo "$str"
+        echo "$strN"
+        if [[ "$strN" =~ [0-9](\.[0-9]+)+ ]]; then
+        echo "::set-output name=TAG::$str"
+        echo "::set-output name=TAG_NUMBER::$strN"
+        echo "${{ github.event.commits[0].message }}"
+        else
+        echo "Version not found, stopping."
+        exit 1
+        fi
+      shell: bash
+      id: tag
+        
+    - name: Set up JDK 17 for building artifacts
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    - name: Build with Maven
+      run: |
+        mvn versions:set -DnewVersion=${{ steps.tag.outputs.TAG }}
+        mvn -Pprod -B package --file pom.xml
+    
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    
+    - name: Build Docker image and push
+      uses: docker/build-push-action@v2
+      with:
+        context: ./
+        file: ./Dockerfile
+        builder: ${{ steps.buildx.outputs.name }}
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/vgestor-api:${{ steps.tag.outputs.TAG_NUMBER }}
+        cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/vgestor-api:buildcache
+        cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/vgestor-api:buildcache,mode=max
+        
+    - name: Update compose.yml file for release
+      run: |
+        sed -i "s+midna3/vgestor-api:latest+midna3/vgestor-api:${{ steps.tag.outputs.TAG_NUMBER }}+g" 'compose.yml'
+        
+    - name: Create release with jar and compose.yml
+      uses: softprops/action-gh-release@v0.1.14
+      with:
+        tag_name: '${{ steps.tag.outputs.TAG }}'
+        files: |
+          ./target/*.jar
+          compose.yml
+        body: '${{ github.event.head_commit.message }}'
+
