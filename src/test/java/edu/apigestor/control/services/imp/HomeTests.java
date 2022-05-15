@@ -210,7 +210,7 @@ public class HomeTests {
     when(this.afdRepository.getAFDForCountry(anyInt(), anyInt()))
         .thenReturn(new AFD());
 
-    when(this.idebRepository.getIDEBForRegion(anyInt(), anyInt()))
+    when(this.idebRepository.getIDEBForCountry(anyInt(), anyInt()))
         .thenReturn(new IDEB());
 
     ResponseEntity<HomeDadosNacionalResponse> response = home.dataCountry("Brasil", 2017);
