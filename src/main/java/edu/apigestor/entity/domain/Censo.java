@@ -43,7 +43,7 @@ public class Censo {
 
   @Column(name = "nomeRegiao")
   private String nomeRegiao;
-  @Column(name = "nomeEstado")
+  @Column(name = "nomeUF")
   private String nomeEstado;
   @Column(name = "nomeMunicipio")
   private String nomeMunicipio;
@@ -292,7 +292,6 @@ public class Censo {
     private int codRegiao;
     private int codMunicipio;
     private String dependencia;
-    private String localizacao;
     private int ano;
 
     @Override
@@ -309,14 +308,13 @@ public class Censo {
           (this.codRegiao == key.codRegiao) &&
           (this.codMunicipio == key.codMunicipio) &&
           this.dependencia.equals(key.dependencia) &&
-          this.localizacao.equals(key.localizacao) &&
           (this.ano == key.ano);
     }
 
     @Override
     public int hashCode() {
       return Objects.hash(this.codINEP, this.codEstado, this.codRegiao,
-          this.codMunicipio, this.dependencia, this.localizacao, this.ano);
+          this.codMunicipio, this.dependencia, this.ano);
     }
   }
 }
