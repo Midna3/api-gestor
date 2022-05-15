@@ -14,11 +14,17 @@ import org.springframework.data.repository.Repository;
  */
 public interface IDEBRepository extends Repository<IDEB, IDEBKey> {
 
-    @Query("SELECT ideb FROM IDEB ideb WHERE "
-            + "ideb.codPais = :codPais AND "
-            + "ideb.ano = :year AND "
-            + "ideb.tipo = 0 AND "
-            + "ideb.dependencia = 'Total' ")
-    IDEB getIDEBForCountry(int codPais, int year);
+  @Query("SELECT ideb FROM IDEB ideb WHERE "
+      + "ideb.codPais = :codPais AND "
+      + "ideb.ano = :year AND "
+      + "ideb.tipo = 0 AND "
+      + "ideb.dependencia = 'Total' ")
+  IDEB getIDEBForCountry(int codPais, int year);
 
+  @Query("SELECT ideb FROM IDEB ideb WHERE "
+      + "ideb.codRegiao = :codRegiao AND "
+      + "ideb.ano = :year AND "
+      + "ideb.tipo = 1 AND "
+      + "ideb.dependencia = 'Total'")
+  IDEB getIDEBForRegion(int codRegiao, int year);
 }
