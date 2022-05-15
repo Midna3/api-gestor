@@ -26,7 +26,7 @@ public class HomeController {
   public ResponseEntity<HomeDadosRegionalResponse> dataRegion(
       @PathVariable("region") String region,
       @RequestParam(name = "year", defaultValue = "2019") int year) {
-    return null;
+    return this.homeService.dataRegion(region, year);
   }
 
   @GetMapping(path = "/country/{country}")
@@ -47,7 +47,7 @@ public class HomeController {
   public ResponseEntity<HomeEscolaResponse> listSchools(
       @PathVariable("schoolName") String schoolName,
       @RequestParam(value = "limit", defaultValue = "10") int limit) {
-    return null;
+    return this.homeService.listSchool(schoolName, limit);
   }
 
 }

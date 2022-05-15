@@ -1,6 +1,8 @@
 package edu.apigestor.control.services;
 
 import edu.apigestor.entity.response.HomeDadosNacionalResponse;
+import edu.apigestor.entity.response.HomeDadosRegionalResponse;
+import edu.apigestor.entity.response.HomeEscolaResponse;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -24,4 +26,14 @@ public interface IHomeService {
    */
   ResponseEntity<HomeDadosNacionalResponse> dataCountry(String country, int year);
 
+  /**
+   * Retorna uma lista de escolas com nome similar ao digitado.
+   *
+   * @param name  nome da escola.
+   * @param limit limite da quantidade de escolas.
+   * @return uma resposta contendo esses dados ou uma informação de erro.
+   */
+  ResponseEntity<HomeEscolaResponse> listSchool(String name, int limit);
+
+  ResponseEntity<HomeDadosRegionalResponse> dataRegion(String country, int year);
 }
