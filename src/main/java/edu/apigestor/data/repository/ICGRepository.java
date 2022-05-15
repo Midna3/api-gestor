@@ -23,4 +23,12 @@ public interface ICGRepository extends Repository<ICG, ICGKey> {
       + "icg.tipo = 0")
   ICG getICGForCountry(int codPais, int year);
 
+  @Query("SELECT icg FROM ICG icg WHERE "
+      + "icg.codRegiao = :codRegiao AND "
+      + "icg.ano = :year AND "
+      + "icg.tipo = 0 AND "
+      + "icg.localizacao = 'Total' AND "
+      + "icg.dependencia = 'Total' AND "
+      + "icg.tipo = 0")
+  ICG getICGForRegion(int codRegiao, int year);
 }

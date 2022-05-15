@@ -23,4 +23,13 @@ public interface AFDRepository extends Repository<AFD, AFDKey> {
       + "afd.tipo = 0")
   AFD getAFDForCountry(int codPais, int year);
 
+  @Query("SELECT afd FROM AFD afd WHERE "
+      + "afd.codRegiao = :codRegiao AND "
+      + "afd.ano = :year AND "
+      + "afd.tipo = 0 AND "
+      + "afd.localizacao = 'Total' AND "
+      + "afd.dependencia = 'Total' AND "
+      + "afd.tipo = 0")
+  AFD getAFDForRegion(int codRegiao, int year);
+
 }
