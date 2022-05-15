@@ -170,15 +170,12 @@ public class Home implements IHomeService {
   public ResponseEntity<HomeEscolaResponse> listSchool(String name, int limit) {
     HomeEscolaResponse response = new HomeEscolaResponse();
 
-    System.out.println(name);
-    System.out.println(limit);
-
     List<Censo> schools = this.censoRepository.getSchoolsSimilar(name, limit);
 
     schools.forEach(s -> response.addEntry(
             s.getNomeEscola(),
             s.getCodINEP(),
-            "%s, %s".formatted(s.getNomeEstado(), s.getNomeMunicipio()),
+            "%s/%s".formatted(s.getNomeEstado(), s.getNomeMunicipio()),
             this.count.getAndIncrement()));
 
     return ResponseEntity.ok(response);
