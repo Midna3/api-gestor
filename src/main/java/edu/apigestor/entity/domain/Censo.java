@@ -72,6 +72,39 @@ public class Censo {
   @Column(name = "turmasFundamental")
   private Double turmasFundamental;
 
+  public Censo(int ano, int codINEP, int codEstado, int codMunicipio, int codRegiao,
+      String dependencia, String nomeRegiao, String nomeEstado, String nomeMunicipio,
+      String nomeBairro, String nomeEscola, String endereco, String numero, String complemento,
+      int cep, Double DDD, Double telefone, Double existeFundamental,
+      Double matriculadosFundamental,
+      Double docentesFundamental, Double turmasFundamental) {
+    this.ano = ano;
+    this.codINEP = codINEP;
+    this.codEstado = codEstado;
+    this.codMunicipio = codMunicipio;
+    this.codRegiao = codRegiao;
+    this.dependencia = dependencia;
+    this.nomeRegiao = nomeRegiao;
+    this.nomeEstado = nomeEstado;
+    this.nomeMunicipio = nomeMunicipio;
+    this.nomeBairro = nomeBairro;
+    this.nomeEscola = nomeEscola;
+    this.endereco = endereco;
+    this.numero = numero;
+    this.complemento = complemento;
+    this.cep = cep;
+    this.DDD = DDD;
+    this.telefone = telefone;
+    this.existeFundamental = existeFundamental;
+    this.matriculadosFundamental = matriculadosFundamental;
+    this.docentesFundamental = docentesFundamental;
+    this.turmasFundamental = turmasFundamental;
+  }
+
+  public Censo() {
+
+  }
+
   /**
    * Retorna o ano dessa entidade.
    *
