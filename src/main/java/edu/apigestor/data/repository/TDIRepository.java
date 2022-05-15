@@ -19,8 +19,14 @@ public interface TDIRepository extends Repository<TDI, TDIKey> {
       + "tdi.ano = :year AND "
       + "tdi.tipo = 0 AND "
       + "tdi.localizacao = 'Total' AND "
-      + "tdi.dependencia = 'Total' AND "
-      + "tdi.tipo = 0")
+      + "tdi.dependencia = 'Total'")
   TDI getTDIForCountry(int codPais, int year);
 
+  @Query("SELECT tdi FROM TDI tdi WHERE "
+  + "tdi.codRegiao = :codRegiao AND "
+  + "tdi.ano = :year AND "
+  + "tdi.tipo = 1 AND "
+  + "tdi.localizacao = 'Total' AND "
+  + "tdi.dependencia = 'Total'")
+TDI getTDIForRegion(int codRegiao, int year);
 }
