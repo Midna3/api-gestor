@@ -10,12 +10,14 @@ import edu.apigestor.control.utils.AvailableYears;
 import edu.apigestor.control.utils.MeanUtils;
 import edu.apigestor.control.utils.MeanUtils.MeanCategory;
 import edu.apigestor.data.repository.AFDRepository;
+import edu.apigestor.data.repository.CensoRepository;
 import edu.apigestor.data.repository.ICGRepository;
 import edu.apigestor.data.repository.IDEBRepository;
 import edu.apigestor.data.repository.IEDRepository;
 import edu.apigestor.data.repository.IRDRepository;
 import edu.apigestor.data.repository.TDIRepository;
 import edu.apigestor.entity.domain.AFD;
+import edu.apigestor.entity.domain.Censo;
 import edu.apigestor.entity.domain.ICG;
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
@@ -23,6 +25,7 @@ import edu.apigestor.entity.domain.TDI;
 import edu.apigestor.entity.response.HomeDadosNacionalResponse;
 import edu.apigestor.entity.response.HomeDadosRegionalResponse;
 import edu.apigestor.entity.response.HomeEscolaResponse;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,6 +54,9 @@ public class Home implements IHomeService {
 
   @Autowired
   private IDEBRepository idebRepository;
+
+  @Autowired
+  private CensoRepository censoRepository;
 
   @Override
   public ResponseEntity<HomeDadosNacionalResponse> dataCountry(String country, int year) {
@@ -164,12 +170,16 @@ public class Home implements IHomeService {
   public ResponseEntity<HomeEscolaResponse> listSchool(String name, int limit) {
     HomeEscolaResponse response = new HomeEscolaResponse();
 
-    // Utilizar full-text search por native queries. Retorno já vem ordenado por relevância.
+    System.out.println(name);
+    System.out.println(limit);
 
-    response.addEntry("Default",
-        0,
-        "State, City",
-        this.count.getAndIncrement());
+    List<Censo> schools = this.censoRepository.getSchoolsSimilar(name, limit);
+
+    schools.forEach(s -> response.addEntry(
+            s.getNomeEscola(),
+            s.getCodINEP(),
+            "%s, %s".formatted(s.getNomeEstado(), s.getNomeMunicipio()),
+            this.count.getAndIncrement()));
 
     return ResponseEntity.ok(response);
   }
