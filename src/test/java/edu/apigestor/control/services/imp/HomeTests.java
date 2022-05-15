@@ -17,6 +17,7 @@ import edu.apigestor.data.repository.IRDRepository;
 import edu.apigestor.data.repository.TDIRepository;
 import edu.apigestor.entity.domain.AFD;
 import edu.apigestor.entity.domain.ICG;
+import edu.apigestor.entity.domain.IDEB;
 import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.TDI;
@@ -238,6 +239,9 @@ public class HomeTests {
 
     when(this.afdRepository.getAFDForRegion(anyInt(), anyInt()))
         .thenReturn(new AFD());
+
+    when(this.idebRepository.getIDEBForRegion(anyInt(), anyInt()))
+        .thenReturn(new IDEB());
 
     ResponseEntity<HomeDadosRegionalResponse> response = home.dataRegion("NORDESTE", 2017);
     ObjectNode root = this.getRoot(this.toJson(response.getBody()));

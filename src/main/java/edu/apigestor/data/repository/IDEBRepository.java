@@ -1,7 +1,7 @@
 package edu.apigestor.data.repository;
-
-import edu.apigestor.entity.domain.AFD;
-import edu.apigestor.entity.domain.AFD.AFDKey;
+import edu.apigestor.entity.domain.IDEB;
+import edu.apigestor.entity.domain.IDEB.IDEBKey;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 /**
@@ -11,9 +11,11 @@ import org.springframework.data.repository.Repository;
  *
  * @version 0.1
  */
-public interface IDEBRepository extends Repository<AFD, AFDKey> {
-  // Temporariamente estamos usando as chaves do AFD já que ainda não possuímos essa entidade
-  //  implementada completamente (dessa forma, conseguimos executar o código).
-  //  Alterar quando tivermos essa entidade.
-
+public interface IDEBRepository extends Repository<IDEB, IDEBKey> {
+  @Query("SELECT ideb FROM IDEB ideb WHERE "
+      + "ideb.codRegiao = :codRegiao AND "
+      + "ideb.ano = :year AND "
+      + "ideb.tipo = 1 AND "
+      + "ideb.dependencia = 'Total'")
+  IDEB getIDEBForRegion(int codRegiao, int year);
 }
