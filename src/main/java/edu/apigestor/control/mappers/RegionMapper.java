@@ -25,11 +25,11 @@ public final class RegionMapper {
     String lower = region.toLowerCase(Locale.ROOT);
 
     return switch (lower) {
-      case "norte", "n" -> new RegionID("n", 1);
-      case "nordeste", "ne" -> new RegionID("ne", 2);
-      case "sudeste", "se" -> new RegionID("se", 3);
-      case "sul", "s" -> new RegionID("s", 4);
-      case "centro-oeste", "co" -> new RegionID("co", 5);
+      case "norte", "n" -> new RegionID("Norte", 1);
+      case "nordeste", "ne" -> new RegionID("Nordeste", 2);
+      case "sudeste", "se" -> new RegionID("Sudeste", 3);
+      case "sul", "s" -> new RegionID("Sul", 4);
+      case "centro-oeste", "co" -> new RegionID("Centro-Oeste", 5);
       default -> new RegionID(null, -1);
     };
   }
