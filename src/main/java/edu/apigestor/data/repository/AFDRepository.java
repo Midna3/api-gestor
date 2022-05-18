@@ -30,4 +30,12 @@ public interface AFDRepository extends Repository<AFD, AFDKey> {
       + "afd.dependencia = 'Total'")
   AFD getAFDForRegion(int codRegiao, int year);
 
+  @Query("SELECT afd FROM AFD afd WHERE "
+          + "afd.codINEP = :codSchool AND "
+          + "afd.ano = :year AND "
+          + "afd.tipo = 1 AND "
+          + "afd.localizacao = 'Total' AND "
+          + "afd.dependencia = 'Total'")
+  AFD getAFDForSchool(int codSchool, int year);
+
 }

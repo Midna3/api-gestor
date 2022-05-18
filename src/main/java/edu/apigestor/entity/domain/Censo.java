@@ -250,10 +250,21 @@ public class Censo {
   }
 
   /**
+   * Verifica a dependencia administrativa da escola.
+   *
+   * @return String representando a dependencia administrativa.
+   * */
+  public String getDependencia() {
+    return dependencia;
+  }
+
+  /**
    * Verifica se a escola tem ensino fundamental.
    *
    * @return Double representando se a escola tem ensino fundamental.
    */
+
+
   public Double getExisteFundamental() {
     return existeFundamental;
   }
@@ -284,6 +295,75 @@ public class Censo {
   public Double getTurmasFundamental() {
     return turmasFundamental;
   }
+
+  /**
+   * Pega a sigla do Estado.
+   *
+   * @return String representando a Sigla do Estado.
+   */
+  public String getSigla() {
+    switch (this.nomeEstado) {
+      case "Acre":
+        return "AC";
+      case "Alagoas":
+        return "AL";
+      case "Amapá":
+        return "AP";
+      case "Amazonas":
+        return "AM";
+      case "Bahia":
+        return "BA";
+      case "Ceará":
+        return "CE";
+      case "Distrito Federal":
+        return "DF";
+      case "Espírito Santo":
+        return "ES";
+      case "Goiás":
+        return "GO";
+      case "Maranhão":
+        return "MA";
+      case "Mato Grosso":
+        return "MT";
+      case "Mato Grosso do Sul":
+        return "MS";
+      case "Minas Gerais":
+        return "MG";
+      case "Pará":
+        return "PA";
+      case "Paraíba":
+        return "PB";
+      case "Paraná":
+        return "PR";
+      case "Pernambuco":
+        return "PE";
+      case "Piauí":
+        return "PI";
+      case "Rio de Janeiro":
+        return "RJ";
+      case "Rio Grande do Norte":
+        return "RN";
+      case "Rio Grande do Sul":
+        return "RS";
+      case "Rondônia":
+        return "RO";
+      case "Roraima":
+        return "RR";
+      case "Santa Catarina":
+        return "SC";
+      case "São Paulo":
+        return "SP";
+      case "Sergipe":
+        return "SE";
+      case "Tocantins":
+        return "TO";
+      default:
+        return null;
+    }
+
+  }
+
+
 
   public static class CensoKey implements Serializable {
 
