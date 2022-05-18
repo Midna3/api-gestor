@@ -12,6 +12,7 @@ import org.springframework.data.repository.Repository;
  *
  * @version 0.1
  */
+
 public interface IEDRepository extends Repository<IED, IEDKey> {
 
   @Query("SELECT ied FROM IED ied WHERE "
@@ -29,5 +30,12 @@ public interface IEDRepository extends Repository<IED, IEDKey> {
       + "ied.localizacao = 'Total' AND "
       + "ied.dependencia = 'Total'")
   IED getIEDForRegion(int codRegiao, int year);
+  @Query("SELECT ied FROM IED ied WHERE "
+      + "ied.codINEP = :codEscola AND "
+      + "ied.ano = :year AND "
+      + "ied.tipo = 4 AND "
+      + "ied.localizacao = 'Total' AND "
+      + "ied.dependencia = 'Total'")
+  IED getIEDForSchool(int codEscola, int year);
 
 }

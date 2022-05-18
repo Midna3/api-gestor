@@ -3,6 +3,8 @@ package edu.apigestor.data.repository;
 import edu.apigestor.entity.domain.Censo;
 import edu.apigestor.entity.domain.Censo.CensoKey;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
@@ -16,5 +18,17 @@ public interface CensoRepository extends Repository<Censo, CensoKey> {
           "ORDER BY s DESC " +
           "LIMIT ?2")
   List<Censo> getSchoolsSimilar(String schoolName, int limit);
+
+  @Query("SELECT censo FROM Censo censo WHERE "
+          + "censo.codINEP = :codEscola AND "
+          + "censo.ano = :year  AND "
+          + "censo.existeFundamental = 1")
+  Censo getCenso(long codEscola, int year);
+
+  @Query(nativeQuery = true,
+          value = "SELECT COUNT(*) FROM censo WHERE "
+          + "codEscola = ?2 AND "
+          + "ano = ?1")
+  long countCensoByAnoAndCodINEP(int ano, long codINEP);
 
 }
