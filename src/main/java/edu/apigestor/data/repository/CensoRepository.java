@@ -12,7 +12,7 @@ public interface CensoRepository extends Repository<Censo, CensoKey> {
       value = "SELECT *, " +
           "MATCH(nomeEscola) " +
           "AGAINST(?1 IN NATURAL LANGUAGE MODE) as s FROM censo " +
-          "WHERE existeFundamental>0 " +
+          "WHERE existeFundamental>0 AND ano=2020" +
           "ORDER BY s DESC " +
           "LIMIT ?2")
   List<Censo> getSchoolsSimilar(String schoolName, int limit);
