@@ -42,8 +42,7 @@ public class PainelEscolaControllerTests {
     ArgumentCaptor<Integer> codeCaptor = ArgumentCaptor.forClass(Integer.class);
     ArgumentCaptor<Integer> yearCaptor = ArgumentCaptor.forClass(Integer.class);
 
-    // Mock: verify(this.iPainelEscolaService).dataSchool(stringCaptor.capture(),
-    //                                                    intCaptor.capture());
+    verify(this.iPainelEscolaService).dataEscola(codeCaptor.capture(), yearCaptor.capture());
 
     assertEquals(codINEP, codeCaptor.getValue());
     if (year == null) {
