@@ -81,7 +81,6 @@ public class PainelEscola implements IPainelEscolaService {
             .idebIniciais(null)
             .idebIniciaisProjection(null);
 
-    /*
     if(AvailableYears.isIdebAvailable(year)){
       IDEB ideb = this.idebRepository.getIDEBForSchool(codINEP, year);
       painelEscolaResponse.idebFinais(ideb.getAnosFinais())
@@ -89,7 +88,6 @@ public class PainelEscola implements IPainelEscolaService {
               .idebIniciais(ideb.getAnosIniciais())
               .idebIniciaisProjection(ideb.getProjecaoAI());
     }
-     */
 
     return ResponseEntity.ok(painelEscolaResponse);
   }
