@@ -60,6 +60,7 @@ public class PainelEscola implements IPainelEscolaService {
     AFD afd = this.afdRepository.getAFDForSchool(codINEP, year);
     MeanUtils.MeanCategory meanAFD = MeanUtils.meanAFD(afd, CategoryMapper::getAFDCategory);
 
+    System.out.println(codINEP);
     Censo censo = this.censoRepository.getCenso(codINEP, year);
 
     painelEscolaResponse.codINEP(codINEP)
@@ -67,8 +68,7 @@ public class PainelEscola implements IPainelEscolaService {
             .nameEscola(censo.getNomeEscola())
             .codINEP((int) censo.getCodINEP())
             .address(AddressMapper.getAddress(censo))
-            .phoneNumber(Long.toString(Math.round(censo.getDDD())),
-                Long.toString(Math.round(censo.getTelefone())))
+            .phoneNumber(censo.getDDD(), censo.getTelefone())
             .nMatriculas(censo.getMatriculadosFundamental().intValue())
             .nDocentes(censo.getDocentesFundamental().intValue())
             .administration(DependenciaMapper.getDependenecia(censo.getDependencia()))
