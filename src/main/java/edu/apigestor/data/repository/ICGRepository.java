@@ -29,4 +29,9 @@ public interface ICGRepository extends Repository<ICG, ICGKey> {
       + "icg.localizacao = 'Total' AND "
       + "icg.dependencia = 'Total'")
   ICG getICGForRegion(int codRegiao, int year);
+  @Query("SELECT icg FROM ICG icg WHERE "
+      + "icg.codINEP = :codEscola AND "
+      + "icg.ano = :year AND "
+      + "icg.tipo = 4")
+  ICG getICGForSchool(int codEscola, int year);
 }

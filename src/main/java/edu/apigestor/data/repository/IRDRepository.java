@@ -1,5 +1,6 @@
 package edu.apigestor.data.repository;
 
+import edu.apigestor.entity.domain.IED;
 import edu.apigestor.entity.domain.IRD;
 import edu.apigestor.entity.domain.IRD.IRDKey;
 import org.springframework.data.jpa.repository.Query;
@@ -25,8 +26,8 @@ public interface IRDRepository extends Repository<IRD, IRDKey> {
   @Query("SELECT ird FROM IRD ird WHERE "
   + "ird.codRegiao = :codRegiao AND "
   + "ird.ano = :year AND "
-  + "ird.tipo = 1 AND "
-  + "ird.localizacao = 'Total' AND "
-  + "ird.dependencia = 'Total'")
+  + "ird.tipo = 1")
 IRD getIRDForRegion(int codRegiao, int year);
+
+
 }

@@ -190,7 +190,7 @@ public class Home implements IHomeService {
 
     schools.forEach(s -> response.addEntry(
             s.getNomeEscola(),
-            s.getCodINEP(),
+        (int) s.getCodINEP(),
             "%s/%s".formatted(s.getNomeEstado(), s.getNomeMunicipio()),
             this.count.getAndIncrement()));
 

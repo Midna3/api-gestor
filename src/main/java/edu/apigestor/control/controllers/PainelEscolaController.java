@@ -24,7 +24,9 @@ public class PainelEscolaController {
   public ResponseEntity<PainelEscolaResponse> dataSchool(
       @PathVariable("codINEP") int codINEP,
       @RequestParam(name = "year", defaultValue = "2019") int year) {
-    return null;
+    return painelEscolaService.dataEscola(codINEP, year);
   }
+
+
 
 }
