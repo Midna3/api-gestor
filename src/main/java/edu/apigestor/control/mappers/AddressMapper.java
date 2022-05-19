@@ -16,7 +16,7 @@ public final class AddressMapper {
         StringBuilder sb = new StringBuilder();
         sb.append(censo.getEndereco()).append(", ").append(censo.getNumero()).append(" - ");
         sb.append(censo.getNomeBairro()).append(", ").append(censo.getNomeMunicipio()).append(" - ");
-        sb.append(censo.getSigla()).append(" - ").append(censo.getCep());
+        sb.append(censo.getSigla()).append(" - ").append(Math.round(censo.getCep()));
         return sb.toString();
     }
 }

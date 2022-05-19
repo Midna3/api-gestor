@@ -2,6 +2,7 @@ package edu.apigestor.control.services.imp;
 
 import edu.apigestor.control.mappers.AddressMapper;
 import edu.apigestor.control.mappers.CategoryMapper;
+import edu.apigestor.control.mappers.DependenciaMapper;
 import edu.apigestor.control.services.IPainelEscolaService;
 import edu.apigestor.control.utils.AvailableYears;
 import edu.apigestor.control.utils.MeanUtils;
@@ -59,16 +60,18 @@ public class PainelEscola implements IPainelEscolaService {
     AFD afd = this.afdRepository.getAFDForSchool(codINEP, year);
     MeanUtils.MeanCategory meanAFD = MeanUtils.meanAFD(afd, CategoryMapper::getAFDCategory);
 
-    Censo  censo = this.censoRepository.getCenso(codINEP, year);
+    Censo censo = this.censoRepository.getCenso(codINEP, year);
+
     painelEscolaResponse.codINEP(codINEP)
             .ano(year)
             .nameEscola(censo.getNomeEscola())
-            .codINEP(censo.getCodINEP())
+            .codINEP((int) censo.getCodINEP())
             .address(AddressMapper.getAddress(censo))
-            .phoneNumber(Double.toString(censo.getDDD()), Double.toString(censo.getTelefone()))
+            .phoneNumber(Long.toString(Math.round(censo.getDDD())),
+                Long.toString(Math.round(censo.getTelefone())))
             .nMatriculas(censo.getMatriculadosFundamental().intValue())
             .nDocentes(censo.getDocentesFundamental().intValue())
-            .administration(censo.getDependencia())
+            .administration(DependenciaMapper.getDependenecia(censo.getDependencia()))
             .id(responseID)
             .ied(meanIED.mean(), meanIED.category())
             .icg(meanICG.mean(), meanICG.category())
@@ -77,6 +80,8 @@ public class PainelEscola implements IPainelEscolaService {
             .idebFinaisProjection(null)
             .idebIniciais(null)
             .idebIniciaisProjection(null);
+
+    /*
     if(AvailableYears.isIdebAvailable(year)){
       IDEB ideb = this.idebRepository.getIDEBForSchool(codINEP, year);
       painelEscolaResponse.idebFinais(ideb.getAnosFinais())
@@ -84,6 +89,8 @@ public class PainelEscola implements IPainelEscolaService {
               .idebIniciais(ideb.getAnosIniciais())
               .idebIniciaisProjection(ideb.getProjecaoAI());
     }
+     */
+
     return ResponseEntity.ok(painelEscolaResponse);
   }
 }

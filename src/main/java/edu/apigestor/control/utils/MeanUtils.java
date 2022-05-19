@@ -25,6 +25,10 @@ public final class MeanUtils {
    * @return uma {@link MeanCategory} contendo a média e a categoria.
    */
   public static MeanCategory meanAFD(AFD afd, Function<Double, String> mapper) {
+    if(afd == null) {
+      return new MeanCategory(null, null);
+    }
+
     return MeanUtils.meanOf(1, 6, mapper,
         afd.percentageG1(),
         afd.percentageG2(),
@@ -40,6 +44,10 @@ public final class MeanUtils {
    * @return uma {@link MeanCategory} contendo a média e a categoria.
    */
   public static MeanCategory meanIED(IED ied, Function<Double, String> mapper) {
+    if(ied == null) {
+      return new MeanCategory(null, null);
+    }
+
     return MeanUtils.meanOf(1, 7, mapper,
         ied.getPercentageN1(),
         ied.getPercentageN2(),
