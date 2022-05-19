@@ -59,11 +59,12 @@ public class PainelEscola implements IPainelEscolaService {
     AFD afd = this.afdRepository.getAFDForSchool(codINEP, year);
     MeanUtils.MeanCategory meanAFD = MeanUtils.meanAFD(afd, CategoryMapper::getAFDCategory);
 
-    Censo  censo = this.censoRepository.getCenso(codINEP, year);
+    Censo censo = this.censoRepository.getCenso(codINEP, year);
+
     painelEscolaResponse.codINEP(codINEP)
             .ano(year)
             .nameEscola(censo.getNomeEscola())
-            .codINEP(censo.getCodINEP())
+            .codINEP((int) censo.getCodINEP())
             .address(AddressMapper.getAddress(censo))
             .phoneNumber(Double.toString(censo.getDDD()), Double.toString(censo.getTelefone()))
             .nMatriculas(censo.getMatriculadosFundamental().intValue())
@@ -78,6 +79,7 @@ public class PainelEscola implements IPainelEscolaService {
             .idebIniciais(null)
             .idebIniciaisProjection(null);
 
+    /*
     if(AvailableYears.isIdebAvailable(year)){
       IDEB ideb = this.idebRepository.getIDEBForSchool(codINEP, year);
       painelEscolaResponse.idebFinais(ideb.getAnosFinais())
@@ -85,6 +87,7 @@ public class PainelEscola implements IPainelEscolaService {
               .idebIniciais(ideb.getAnosIniciais())
               .idebIniciaisProjection(ideb.getProjecaoAI());
     }
+     */
 
     return ResponseEntity.ok(painelEscolaResponse);
   }

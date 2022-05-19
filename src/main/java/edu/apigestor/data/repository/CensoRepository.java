@@ -23,12 +23,12 @@ public interface CensoRepository extends Repository<Censo, CensoKey> {
           + "censo.codINEP = :codEscola AND "
           + "censo.ano = :year  AND "
           + "censo.existeFundamental = 1")
-  Censo getCenso(long codEscola, int year);
+  Censo getCenso(long codEscola, long year);
 
   @Query(nativeQuery = true,
           value = "SELECT COUNT(*) FROM censo WHERE "
           + "codEscola = ?2 AND "
           + "ano = ?1")
-  long countCensoByAnoAndCodINEP(int ano, long codINEP);
+  long countCensoByAnoAndCodINEP(long ano, long codINEP);
 
 }

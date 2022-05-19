@@ -24,19 +24,19 @@ public class Censo {
 
   @Id
   @Column(name = "ano")
-  private int ano;
+  private long ano;
   @Id
   @Column(name = "codEscola")
-  private int codINEP;
+  private long codINEP;
   @Id
   @Column(name = "codEstado")
-  private int codEstado;
+  private long codEstado;
   @Id
   @Column(name = "codMunicipio")
-  private int codMunicipio;
+  private long codMunicipio;
   @Id
   @Column(name = "codRegiao")
-  private int codRegiao;
+  private long codRegiao;
   @Id
   @Column(name = "dependencia")
   private String dependencia;
@@ -58,7 +58,7 @@ public class Censo {
   @Column(name = "complemento")
   private String complemento;
   @Column(name = "cep")
-  private int cep;
+  private Double cep;
   @Column(name = "DDD")
   private Double DDD;
   @Column(name = "telefone")
@@ -72,10 +72,10 @@ public class Censo {
   @Column(name = "turmasFundamental")
   private Double turmasFundamental;
 
-  public Censo(int ano, int codINEP, int codEstado, int codMunicipio, int codRegiao,
+  public Censo(long ano, long codINEP, long codEstado, long codMunicipio, long codRegiao,
       String dependencia, String nomeRegiao, String nomeEstado, String nomeMunicipio,
       String nomeBairro, String nomeEscola, String endereco, String numero, String complemento,
-      int cep, Double DDD, Double telefone, Double existeFundamental,
+      double cep, Double DDD, Double telefone, Double existeFundamental,
       Double matriculadosFundamental,
       Double docentesFundamental, Double turmasFundamental) {
     this.ano = ano;
@@ -110,7 +110,7 @@ public class Censo {
    *
    * @return inteiro que representa o ano (e.g., 2019).
    */
-  public int getAno() {
+  public long getAno() {
     return ano;
   }
 
@@ -119,7 +119,7 @@ public class Censo {
    *
    * @return int representando o código INEP.
    */
-  public int getCodINEP() {
+  public long getCodINEP() {
     return codINEP;
   }
 
@@ -128,7 +128,7 @@ public class Censo {
    *
    * @return int representando o estado.
    */
-  public int getCodEstado() {
+  public long getCodEstado() {
     return codEstado;
   }
 
@@ -137,7 +137,7 @@ public class Censo {
    *
    * @return int representando o estado.
    */
-  public int getCodMunicipio() {
+  public long getCodMunicipio() {
     return codMunicipio;
   }
 
@@ -146,7 +146,7 @@ public class Censo {
    *
    * @return int representando o estado.
    */
-  public int getCodRegiao() {
+  public long getCodRegiao() {
     return codRegiao;
   }
 
@@ -227,7 +227,7 @@ public class Censo {
    *
    * @return int representando o CEP.
    */
-  public int getCep() {
+  public double getCep() {
     return cep;
   }
 
@@ -302,64 +302,36 @@ public class Censo {
    * @return String representando a Sigla do Estado.
    */
   public String getSigla() {
-    switch (this.nomeEstado) {
-      case "Acre":
-        return "AC";
-      case "Alagoas":
-        return "AL";
-      case "Amapá":
-        return "AP";
-      case "Amazonas":
-        return "AM";
-      case "Bahia":
-        return "BA";
-      case "Ceará":
-        return "CE";
-      case "Distrito Federal":
-        return "DF";
-      case "Espírito Santo":
-        return "ES";
-      case "Goiás":
-        return "GO";
-      case "Maranhão":
-        return "MA";
-      case "Mato Grosso":
-        return "MT";
-      case "Mato Grosso do Sul":
-        return "MS";
-      case "Minas Gerais":
-        return "MG";
-      case "Pará":
-        return "PA";
-      case "Paraíba":
-        return "PB";
-      case "Paraná":
-        return "PR";
-      case "Pernambuco":
-        return "PE";
-      case "Piauí":
-        return "PI";
-      case "Rio de Janeiro":
-        return "RJ";
-      case "Rio Grande do Norte":
-        return "RN";
-      case "Rio Grande do Sul":
-        return "RS";
-      case "Rondônia":
-        return "RO";
-      case "Roraima":
-        return "RR";
-      case "Santa Catarina":
-        return "SC";
-      case "São Paulo":
-        return "SP";
-      case "Sergipe":
-        return "SE";
-      case "Tocantins":
-        return "TO";
-      default:
-        return null;
-    }
+    return switch (this.nomeEstado) {
+      case "Acre" -> "AC";
+      case "Alagoas" -> "AL";
+      case "Amapá" -> "AP";
+      case "Amazonas" -> "AM";
+      case "Bahia" -> "BA";
+      case "Ceará" -> "CE";
+      case "Distrito Federal" -> "DF";
+      case "Espírito Santo" -> "ES";
+      case "Goiás" -> "GO";
+      case "Maranhão" -> "MA";
+      case "Mato Grosso" -> "MT";
+      case "Mato Grosso do Sul" -> "MS";
+      case "Minas Gerais" -> "MG";
+      case "Pará" -> "PA";
+      case "Paraíba" -> "PB";
+      case "Paraná" -> "PR";
+      case "Pernambuco" -> "PE";
+      case "Piauí" -> "PI";
+      case "Rio de Janeiro" -> "RJ";
+      case "Rio Grande do Norte" -> "RN";
+      case "Rio Grande do Sul" -> "RS";
+      case "Rondônia" -> "RO";
+      case "Roraima" -> "RR";
+      case "Santa Catarina" -> "SC";
+      case "São Paulo" -> "SP";
+      case "Sergipe" -> "SE";
+      case "Tocantins" -> "TO";
+      default -> null;
+    };
 
   }
 
@@ -367,12 +339,12 @@ public class Censo {
 
   public static class CensoKey implements Serializable {
 
-    private int codINEP;
-    private int codEstado;
-    private int codRegiao;
-    private int codMunicipio;
+    private long codINEP;
+    private long codEstado;
+    private long codRegiao;
+    private long codMunicipio;
     private String dependencia;
-    private int ano;
+    private long ano;
 
     @Override
     public boolean equals(Object o) {
