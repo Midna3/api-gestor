@@ -33,8 +33,6 @@ public interface TDIRepository extends Repository<TDI, TDIKey> {
   @Query("SELECT tdi FROM TDI tdi WHERE "
   + "tdi.codINEP = :codEscola AND "
   + "tdi.ano = :year AND "
-  + "tdi.tipo = 4 AND "
-  + "tdi.localizacao = 'Total' AND "
-  + "tdi.dependencia = 'Total'")
+  + "tdi.tipo = 4")
   TDI getTDIForSchool(int codEscola, int year);
 }

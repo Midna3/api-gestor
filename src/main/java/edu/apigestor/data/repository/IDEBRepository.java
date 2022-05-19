@@ -32,7 +32,6 @@ public interface IDEBRepository extends Repository<IDEB, IDEBKey> {
   @Query("SELECT ideb FROM IDEB ideb WHERE "
           + "ideb.codINEP = :codEscola AND "
           + "ideb.ano = :year AND "
-          + "ideb.tipo = 4 AND "
-          + "ideb.dependencia = 'Total'")
+          + "ideb.tipo = 4")
   IDEB getIDEBForSchool(int codEscola, int year);
 }

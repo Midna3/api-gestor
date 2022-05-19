@@ -33,9 +33,7 @@ public interface IEDRepository extends Repository<IED, IEDKey> {
   @Query("SELECT ied FROM IED ied WHERE "
       + "ied.codINEP = :codEscola AND "
       + "ied.ano = :year AND "
-      + "ied.tipo = 4 AND "
-      + "ied.localizacao = 'Total' AND "
-      + "ied.dependencia = 'Total'")
+      + "ied.tipo = 4")
   IED getIEDForSchool(int codEscola, int year);
 
 }

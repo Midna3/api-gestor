@@ -26,9 +26,7 @@ public interface IRDRepository extends Repository<IRD, IRDKey> {
   @Query("SELECT ird FROM IRD ird WHERE "
   + "ird.codRegiao = :codRegiao AND "
   + "ird.ano = :year AND "
-  + "ird.tipo = 1 AND "
-  + "ird.localizacao = 'Total' AND "
-  + "ird.dependencia = 'Total'")
+  + "ird.tipo = 1")
 IRD getIRDForRegion(int codRegiao, int year);
 
 
