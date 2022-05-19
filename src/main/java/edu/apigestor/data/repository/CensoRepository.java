@@ -19,11 +19,11 @@ public interface CensoRepository extends Repository<Censo, CensoKey> {
           "LIMIT ?2")
   List<Censo> getSchoolsSimilar(String schoolName, int limit);
 
-  @Query("SELECT censo FROM Censo censo WHERE "
-          + "censo.codINEP = :codEscola AND "
-          + "censo.ano = :year  AND "
-          + "censo.existeFundamental = 1")
-  Censo getCenso(long codEscola, long year);
+  @Query(nativeQuery = true, value = "SELECT * FROM censo WHERE "
+          + "codEscola = ?1 AND "
+          + "ano = ?2  AND "
+          + "existeFundamental = 1")
+  Censo getCenso(int codEscola, int year);
 
   @Query(nativeQuery = true,
           value = "SELECT COUNT(*) FROM censo WHERE "

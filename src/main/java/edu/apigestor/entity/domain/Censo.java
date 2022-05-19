@@ -60,9 +60,9 @@ public class Censo {
   @Column(name = "cep")
   private Double cep;
   @Column(name = "DDD")
-  private Double DDD;
+  private String DDD;
   @Column(name = "telefone")
-  private Double telefone;
+  private String telefone;
   @Column(name = "existeFundamental")
   private Double existeFundamental;
   @Column(name = "matriculadosFundamental")
@@ -75,7 +75,7 @@ public class Censo {
   public Censo(long ano, long codINEP, long codEstado, long codMunicipio, long codRegiao,
       String dependencia, String nomeRegiao, String nomeEstado, String nomeMunicipio,
       String nomeBairro, String nomeEscola, String endereco, String numero, String complemento,
-      double cep, Double DDD, Double telefone, Double existeFundamental,
+      double cep, String DDD, String telefone, Double existeFundamental,
       Double matriculadosFundamental,
       Double docentesFundamental, Double turmasFundamental) {
     this.ano = ano;
@@ -236,7 +236,7 @@ public class Censo {
    *
    * @return Double representando o Telefone.
    */
-  public Double getDDD() {
+  public String getDDD() {
     return DDD;
   }
 
@@ -245,7 +245,7 @@ public class Censo {
    *
    * @return Double representando o Telefone.
    */
-  public Double getTelefone() {
+  public String getTelefone() {
     return telefone;
   }
 
