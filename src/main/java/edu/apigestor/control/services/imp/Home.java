@@ -145,18 +145,23 @@ public class Home implements IHomeService {
 
     IED ied = this.iedRepository.getIEDForRegion(code, year);
     MeanCategory meanIED = MeanUtils.meanIED(ied, CategoryMapper::getIEDCategory);
+    System.out.println("IED pass");
 
     IRD ird = this.irdRepository.getIRDForRegion(code, year);
     MeanCategory meanIRD = MeanCategory.of(ird.getMediaTotal(), CategoryMapper::getIRDCategory);
+    System.out.println("IRD pass");
 
     TDI tdi = this.tdiRepository.getTDIForRegion(code, year);
     Double meanTDI = tdi.getPercentageFundamentalTotal();
+    System.out.println("TDI pass");
 
     ICG icg = this.icgRepository.getICGForRegion(code, year);
     MeanCategory meanICG = MeanCategory.of(icg.valorMedio(), CategoryMapper::getICGCategory);
+    System.out.println("ICG pass");
     
     AFD afd = this.afdRepository.getAFDForRegion(code, year);
     MeanCategory meanAFD = MeanUtils.meanAFD(afd, CategoryMapper::getAFDCategory);
+    System.out.println("AFD pass");
 
     response.region(regionName)
         .ano(year)
